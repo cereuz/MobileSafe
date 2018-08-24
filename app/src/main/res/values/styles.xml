@@ -1,0 +1,118 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!-- 隐藏状态栏 -->
+<!--        <item name="android:windowFullscreen">true</item>-->
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme2" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!-- 隐藏状态栏 -->
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--     <TextView
+        android:text="@string/title_function"
+        android:gravity="center"
+        android:textSize="@dimen/title_size"
+        android:background="@color/colorGreen"
+        android:padding="@dimen/item_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" /> -->
+
+    <style name="Title_Style" >
+        <item name="android:gravity">center</item>
+
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:background">@color/colorGreen</item>
+
+        <item name="android:padding">@dimen/item_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--
+        <Button
+        android:onClick="prePage"
+        android:text="@string/setup_pre_page"
+        android:background="@drawable/selector_next_btn_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"/>
+    <Button
+        android:onClick="prePage"
+        android:text="@string/setup_next_page"
+        android:background="@drawable/selector_next_btn_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+-->
+
+    <style name="Pre_Page" >
+        <item name="android:onClick">prePage</item>
+        <item name="android:text">@string/setup_pre_page</item>
+        <item name="android:background">@drawable/selector_next_btn_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/maquee_text</item>
+        <item name="android:layout_marginStart">@dimen/maquee_text</item>
+    </style>
+
+    <style name="Next_Page" >
+        <item name="android:onClick">nextPage</item>
+        <item name="android:text">@string/setup_next_page</item>
+        <item name="android:background">@drawable/selector_next_btn_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">@dimen/maquee_text</item>
+        <item name="android:layout_marginEnd">@dimen/maquee_text</item>
+    </style>
+
+
+
+<!--    <style name="Next_Btn_Style" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/selector_next_btn_bg</item>
+        <item name="android:layout_marginBottom">@dimen/item_margin</item>
+        <item name="android:layout_marginEnd">@dimen/item_margin</item>
+        <item name="android:layout_marginStart">@dimen/item_margin</item>
+        <item name="android:layout_marginTop">@dimen/item_margin</item>
+        <item name="android:text">@string/tv_setup_one_next</item>
+        <item name="app:layout_constraintBottom_toBottomOf">parent</item>
+        <item name="app:layout_constraintEnd_toEndOf">parent</item>
+        <item name="app:layout_constraintStart_toStartOf">parent</item>
+        <item name="app:layout_constraintTop_toTopOf">parent</item>
+        <item name="app:layout_constraintHorizontal_bias">1.0</item>
+        <item name="app:layout_constraintVertical_bias">1.0</item>
+    </style>-->
+
+</resources>

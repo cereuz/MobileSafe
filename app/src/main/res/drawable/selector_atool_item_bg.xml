@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 自己通过xml绘制出来的带圆角背景的图片 -->
+    <item android:state_pressed="true" android:drawable="@android:color/darker_gray"></item>
+    <item android:state_hovered="true" android:drawable="@color/colorPrimaryDark0"></item>
+    <item android:state_focused="true" android:drawable="@color/colorPrimary"></item>
+    <!-- 使用安卓透明色 -->
+    <item android:drawable="@color/colorAccent"></item>
+</selector>

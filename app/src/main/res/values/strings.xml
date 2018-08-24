@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">蜗牛卫士</string>
+    <string name="title_function">功能列表</string>
+    <string name="title_setting">设置中心</string>
+    <string name="title_setting_update">设置自动更新</string>
+    <string name="title_no_setting">暂未设置</string>
+    <string name="title_mobile_safe">手机防盗</string>
+    <string name="title_setup_one">1、欢迎使用手机防盗</string>
+    <string name="title_setup_two">2、手机卡绑定</string>
+    <string name="title_setup_three">3、设置安全号码</string>
+    <string name="title_setup_four">4、恭喜您，设置完成</string>
+    <string name="title_setup_over">手机防盗</string>
+
+    <string name="dialog_title_setting">设置密码</string>
+    <string name="dialog_title_confirm">确认密码</string>
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="setup_pre_page">上一页</string>
+    <string name="setup_next_page">下一页</string>
+
+    <string name="tv_setup_one_title">您的手机防盗卫士</string>
+    <string name="tv_setup_one_item1">SIM卡变更报警</string>
+    <string name="tv_setup_one_item2">GPS追踪</string>
+    <string name="tv_setup_one_item3">远程数据销毁</string>
+    <string name="tv_setup_one_item4">远程锁屏</string>
+
+    <string name="tv_setup_safe_phone">安全号码</string>
+    <string name="tv_setup_safe_number">13282380039</string>
+    <string name="tv_setup_safe_open">防盗保护是否开启</string>
+    <string name="tv_setup_safe_goto">重新进入设置向导</string>
+
+
+    <string name="tv_setup_two_content">通过绑定手机卡：\n下次重启手机如果发现SIM卡变化就会发送报警短信</string>
+    <string name="tv_setup_three_content">SIM卡变更后\n报警短信会发送给安全号码</string>
+    <string name="tv_setup_four_content">您没有开启防盗保护</string>
+    <string name="btn_open_contact">选择联系人</string>
+    <string name="phone_contact_list">通讯录</string>
+
+
+
+    <string name="title_marquee">夏天夏天悄悄过去，留下小秘密，呀嘻嘻呀嘻嘻，不能告诉你，不能告诉你，不能告诉你。。</string>
+    <string name="music">\u2764\u265A\u260E</string>
+    <string name="sample_device_admin">一早管理员</string>
+    <string name="sample_device_admin_description">一键激活，一键锁屏，一键清除数据，一键卸载</string>
+    <string name="device_btn_active">一键激活</string>
+    <string name="device_btn_lock">一键锁屏</string>
+    <string name="device_btn_wipedata">一键清除数据</string>
+    <string name="device_btn_uninstall">一键卸载</string>
+    <string name="tv_atool_title">高级工具</string>
+    <string name="tv_atool_location">归属地查询</string>
+    <string name="tv_atool_sms_backup">短信备份</string>
+    <string name="tv_atool_ofenuse">常用号码查询</string>
+    <string name="tv_atool_applock">程序锁</string>
+</resources>

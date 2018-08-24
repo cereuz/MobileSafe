@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+        <external-path name="external-files-path" path="ame"/>
+ <!--
+ diary sdcard/photo
+                                标签	     路径
+<files-path name="name" path="path" />	Context.getFilesDir()
+<cache-path name="name" path="path" />	getCacheDir()
+<external-path name="name" path="path" />	Environment.getExternalStorageDirectory()
+<external-files-path name="name" path="path" />	Context.getExternalFilesDir()
+<external-cache-path name="name" path="path" />	Context.getExternalCacheDir()
+-->
+</paths>

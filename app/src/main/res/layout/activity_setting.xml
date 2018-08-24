@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+<!--    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/maquee_text">
+        <TextView
+            android:id="@+id/tv_title"
+            android:text="@string/app_name"
+            android:textSize="@dimen/title_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_des"
+            android:text="@string/app_name"
+            android:textSize="@dimen/title_size"
+            android:layout_below="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="#000"
+            android:layout_below="@+id/tv_des"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </RelativeLayout>-->
+
+    <TextView
+        android:text="@string/title_setting"
+        style="@style/Title_Style" />
+
+    <com.onezao.zao.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.onezao.zao.mobilesafe"
+        android:id="@+id/siv_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:destitle="设置自动更新"
+        mobilesafe:deson="自动更新已开启"
+        mobilesafe:desoff="自动更新已关闭">
+    </com.onezao.zao.mobilesafe.view.SettingItemView>
+
+    <com.onezao.zao.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.onezao.zao.mobilesafe"
+        android:id="@+id/siv_update2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:destitle="测试自动更新设置"
+        mobilesafe:deson="测试自动更新已关闭"
+        mobilesafe:desoff="测试自动更新已开启">>
+    </com.onezao.zao.mobilesafe.view.SettingItemView>
+
+    <com.onezao.zao.mobilesafe.view.SettingItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.onezao.zao.mobilesafe.view.SettingItemView>
+
+    <com.onezao.zao.mobilesafe.view.SettingItemView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.onezao.zao.mobilesafe.view.SettingItemView>
+
+</LinearLayout>

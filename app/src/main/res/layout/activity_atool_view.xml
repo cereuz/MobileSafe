@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/Title_Style"
+        android:text="@string/tv_atool_title" />
+
+    <TextView
+        android:id="@+id/tv_atool_location"
+        android:drawableStart="@android:drawable/btn_star"
+        android:padding="@dimen/item_margin"
+        android:background="@drawable/selector_atool_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:text="@string/tv_atool_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_atool_sms_backup"
+        android:drawableStart="@android:drawable/btn_star"
+        android:padding="@dimen/item_margin"
+        android:background="@drawable/selector_atool_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:text="@string/tv_atool_sms_backup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_atool_location" />
+
+    <TextView
+        android:id="@+id/tv_atool_ofenuse"
+        android:drawableStart="@android:drawable/btn_star"
+        android:padding="@dimen/item_margin"
+        android:background="@drawable/selector_atool_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:text="@string/tv_atool_ofenuse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_atool_sms_backup" />
+
+    <TextView
+        android:id="@+id/tv_atool_applock"
+        android:drawableStart="@android:drawable/btn_star"
+        android:padding="@dimen/item_margin"
+        android:background="@drawable/selector_atool_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:text="@string/tv_atool_applock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_atool_ofenuse" />
+
+
+</android.support.constraint.ConstraintLayout>
