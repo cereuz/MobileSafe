@@ -35,6 +35,8 @@
     <string name="tv_setup_four_content">您没有开启防盗保护</string>
     <string name="btn_open_contact">选择联系人</string>
     <string name="phone_contact_list">通讯录</string>
+    <string name="tv_black_number">黑名单管理</string>
+    <string name="add">添加</string>
 
 
 

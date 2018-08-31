@@ -1,8 +1,10 @@
 package com.onezao.zao.mobilesafe.activity;
 
+import android.app.Service;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -82,6 +84,12 @@ public class QueryAddressActivity extends AppCompatActivity{
             //2.2输入框为空的时候，点击查询，会产生抖动效果。
             Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
             et_phone.startAnimation(shake);
+            //2.3 输入框为空的时候，点击查询，会产生抖动效果
+            Vibrator vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
+            long[] patter = {2000, 5000, 2000, 5000};
+            vibrator.vibrate(patter, 3);
+            //2.3.1 取消震动
+//            vibrator.cancel();
         }
 
     }

@@ -10,13 +10,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.onezao.zao.mobilesafe.R;
+import com.onezao.zao.mobilesafe.SplashActivity;
 import com.onezao.zao.mobilesafe.activity.AToolActivity;
+import com.onezao.zao.mobilesafe.activity.BlackNumberActivity;
 import com.onezao.zao.mobilesafe.activity.DeviceAdminActivity;
+import com.onezao.zao.mobilesafe.activity.RocketActivity;
 import com.onezao.zao.mobilesafe.activity.SettingActivity;
 import com.onezao.zao.mobilesafe.activity.SetupOverActivity;
 import com.onezao.zao.mobilesafe.activity.WebwithAndroidActivity;
@@ -84,15 +88,20 @@ public class HomeActivity extends AppCompatActivity {
                 //开启密码对话框
                 showDialog();
                 break;
+            case  1 :
+                //跳转到通信卫士列表界面
+                startActivity(new Intent(getApplicationContext(), BlackNumberActivity.class));
+                finish();
+                break;
             case  7 :
                 //跳转到高级工具功能列表界面
                 startActivity(new Intent(getApplicationContext(),AToolActivity.class));
                 break;
             case  8 :
-                Intent intent = new Intent(HomeActivity.this,SettingActivity.class);
+                Intent intent8 = new Intent(HomeActivity.this,SettingActivity.class);
                 //传递数据到打开的Activity
-                intent.putExtra("item",position + " . 蜗牛");
-                startActivity(intent);
+                intent8.putExtra("item",position + " . 蜗牛");
+                startActivity(intent8);
                 break;
             case  9 :
                 //进入Android调用Web的功能界面
@@ -100,9 +109,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent9);
                 break;
             case  10 :
-                //设备管理
-                Intent intent3 = new Intent(HomeActivity.this, DeviceAdminActivity.class);
-                startActivity(intent3);
+                //管理权限
+                Intent intent10 = new Intent(HomeActivity.this, DeviceAdminActivity.class);
+                startActivity(intent10);
+                break;
+            case  11 :
+                //发射火箭
+                Intent intent11 = new Intent(HomeActivity.this, RocketActivity.class);
+                startActivity(intent11);
+                finish();
                 break;
         }
 
@@ -256,11 +271,24 @@ public class HomeActivity extends AppCompatActivity {
 
     //初始化数据
     private void initData() {
-        String[] dataB = {"手机防盗","通讯卫士","软件管理","设备管理","手机防盗","手机防盗","手机防盗","高级工具","设置中心","WEB交互","管理权限","手机防盗","手机防盗","手机防盗","手机防盗","手机防盗",};
+        String[] dataB = {"手机防盗","通讯卫士","软件管理","设备管理","手机防盗","手机防盗","手机防盗","高级工具","设置中心","WEB交互","管理权限","发射火箭","手机防盗","手机防盗","手机防盗","手机防盗",};
         for (int i = 0; i < 16; i++) {
             Book book01 = new Book(dataB[i],R.mipmap.ic_launcher);
             mlsit.add(book01);
         }
+    }
+
+    /**
+     * 禁用返回键按钮
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return false;
     }
 
 }

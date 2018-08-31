@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
 
     <!-- 二维码相关权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -34,7 +36,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SplashActivity"
-            android:theme="@style/AppTheme2">
+            android:theme="@style/AppTheme2"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -53,6 +56,12 @@
 
         <activity android:name=".activity.AToolActivity"></activity>
         <activity android:name=".activity.QueryAddressActivity"></activity>
+        <activity android:name=".activity.ToastLocationActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name=".activity.RocketActivity"></activity>
+        <activity android:name=".activity.RocketBackgroundActivgity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:name=".activity.BlackNumberActivity"/>
 
         <receiver android:name=".receiver.BootReceiver">
             <intent-filter>
@@ -87,6 +96,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <service android:name=".service.AddressService"/>
+        <service android:name=".service.RocketService"/>
 
     </application>
 

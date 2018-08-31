@@ -75,6 +75,42 @@ public class SpUtils {
 //        sp.edit().putBoolean(key,value).commit();
     }
 
+
+    /**
+     * 写  Integer 值 进入 SharedPreferences
+     * @param context  上下文环境
+     * @param file    存储在手机本地的文件名称
+     * @param key    存储节点名称
+     * @param value  存储节点的值  boolean
+     */
+    public static void putInt(Context context,String file,String key,Integer value){
+        //（存储节点文件名称，读写方式）
+        if(sp == null){
+            sp = context.getSharedPreferences(file,Context.MODE_PRIVATE);
+        }
+        sp.edit().putInt(key,value).apply();
+//        sp.edit().putBoolean(key,value).commit();
+    }
+
+    /**
+     * 读  从 SharedPreferences 中读取 Integer 值
+     * @param context  上下文环境
+     * @param file  读取的本地文件名称
+     * @param key   存储节点名称
+     * @param defValue  存储节点的值， 如果没有则取默认值
+     * @return  默认值或者此节点读取到的结果
+     */
+    //
+    public static Integer getInt(Context context,String file,String key,Integer defValue){
+        //（存储节点文件名称，读写方式）
+        if(sp == null){
+            sp = context.getSharedPreferences(file,Context.MODE_PRIVATE);
+        }
+        return sp.getInt(key,defValue);
+//        sp.edit().putBoolean(key,value).commit();
+    }
+
+
     /**
      * 删除节点的方法
       * @param context

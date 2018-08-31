@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+/*  implementation 'com.github.appium:java-client:5.0.0'
+    compile 'io.appium:java-client:6.1.0'
+    implementation files('src/main/java/libs/selenium-server-standalone-3.13.0.jar')*/
+    implementation files('src/main/java/libs/java-client-4.1.2.jar')
+    implementation files('src/main/java/libs/selenium-server-standalone-2.46.0.jar')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

@@ -2,6 +2,7 @@ package com.onezao.zao.mobilesafe.utils;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * @author 蜗牛
@@ -49,30 +51,64 @@ public class ZaoUtils {
 
     //获取系统时间。
     @SuppressLint("SimpleDateFormat")
-    public  static String getSystemTimeHello(){
-        Date date    =   new    Date(System.currentTimeMillis());//获取当前时间
+    public  static String getSystemTimeHello() {
+        Date date = new Date(System.currentTimeMillis());//获取当前时间
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy年MM月dd日 EEEE");
+        String str = mFormat.format(date);
+        return str;
+    }
 
-        SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 EEEE");
-        //2018年07月24日 15时16分27秒 星期二
-        Log.e("CurTime","time1="+format.format(date));
-        format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss EEEE");
-        Log.e("CurTime","time2="+format.format(date));
-        format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Log.e("CurTime","time2="+format.format(date));
-        format=new SimpleDateFormat("yyyy/MM/dd");
-        Log.e("CurTime","time3="+format.format(date));
-        format=new SimpleDateFormat("HH:mm:ss");
-        Log.e("CurTime","time4="+format.format(date));
-        format=new SimpleDateFormat("EEEE");
-        Log.e("CurTime","time5="+format.format(date));
-        format=new SimpleDateFormat("E");
-        Log.e("CurTime","time6="+format.format(date));
+    //获取系统时间。
+    @SuppressLint("SimpleDateFormat")
+    public  static String getSystemTimeMore(int i){
+        SimpleDateFormat mFormat = null;
+        Date date    =   new    Date(System.currentTimeMillis());//获取当前时间
+        switch(i){
+            case 1 :
+                mFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒SS毫秒 EEEE");
+                //2018年07月24日 15时16分27秒 星期二
+                Log.e("CurTime","time1="+mFormat.format(date));
+                break;
+
+            case 2 :
+                mFormat=new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss",Locale.ENGLISH);
+                Log.e("CurTime","time2="+mFormat.format(date));
+                break;
+            case 3 :
+                mFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Log.e("CurTime","time2="+mFormat.format(date));
+                break;
+            case 4 :
+                mFormat=new SimpleDateFormat("yyyy/MM/dd");
+                Log.e("CurTime","time3="+mFormat.format(date));
+                break;
+            case 5 :
+                mFormat=new SimpleDateFormat("HH-mm-ss");
+                Log.e("CurTime","time4="+mFormat.format(date));
+                break;
+            case 6 :
+                mFormat=new SimpleDateFormat("EEEE");
+                Log.e("CurTime","time5="+mFormat.format(date));
+                break;
+            case 7 :
+                mFormat=new SimpleDateFormat("E");
+                Log.e("CurTime","time6="+mFormat.format(date));
+                break;
+
+            case 8 :
+                mFormat    =   new    SimpleDateFormat    ("yyyy年MM月dd日 ，EEEE ");
+                break;
+
+            case 9 :
+                SimpleDateFormat sdf2 = new SimpleDateFormat("MM dd, yyyy HH:mm:ss",
+                        Locale.ENGLISH);
+              break;
+        }
 
         //	SimpleDateFormat    formatter    =   new    SimpleDateFormat    ("yyyy年MM月dd日 HH:mm:ss ");
 //        SimpleDateFormat formatter    =   new    SimpleDateFormat    ("yyyy年MM月dd日 , EEEE ");
-        SimpleDateFormat formatter    =   new    SimpleDateFormat    ("yyyy年MM月dd日 ，EEEE ");
-        String    str    =    formatter.format(date);
-        return str;
+          String  str  =  mFormat.format(date);
+          return str;
     }
 
     //时间转换

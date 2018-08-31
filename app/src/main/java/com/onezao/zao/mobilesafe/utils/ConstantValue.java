@@ -1,5 +1,7 @@
 package com.onezao.zao.mobilesafe.utils;
 
+import android.database.sqlite.SQLiteDatabase;
+
 public class ConstantValue {
 
     /**
@@ -42,6 +44,34 @@ public class ConstantValue {
      * 是否开启安全保护的key
      */
     public static final String OPEN_SECURITY = "open_security";
+    /**
+     * 归属地服务的类名称
+     */
+    public static final String ADDRESS_SERVICE_CLASS = "com.onezao.zao.mobilesafe.service.AddressService";
+    /**
+     * 自定义Toast，设置其不同的样式的索引的key值
+     */
+    public static final String TOAST_STYLE = "toast_style";
+    /**
+     * 左上角的x坐标的key
+     */
+    public static final String TOAST_LOCATION_X = "toast_location_x";
+    /**
+     * 左上角的y坐标的key
+     */
+    public static final String TOAST_LOCATION_Y = "toast_location_y";
+    /**
+     * 创建黑名单数据库
+     */
+    public static final String DADABASE_MOBILESAFE = "mobilesafe_bn";
+   /**
+     * 创建黑名单数据库的表
+     */
+    public static final String DATABASE_TABLE_BLACKNUMBER = "create table blacknumber (_bn_id integer primary key autoincrement , bn_phone varchar(20),bn_mode varchar(6),bn_time varchar(60));";
+    /**
+     * 数据库表的名称
+     */
+    public static final String DATABASE_BLACKNUMBER_TABLE_NAME = "blacknumber";
     /**
      *  时间常量，4秒钟  即 4000 毫秒
      */

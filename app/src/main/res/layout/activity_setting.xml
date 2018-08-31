@@ -52,22 +52,24 @@
 
     <com.onezao.zao.mobilesafe.view.SettingItemView
         xmlns:mobilesafe="http://schemas.android.com/apk/res/com.onezao.zao.mobilesafe"
-        android:id="@+id/siv_update2"
+        android:id="@+id/siv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        mobilesafe:destitle="测试自动更新设置"
-        mobilesafe:deson="测试自动更新已关闭"
-        mobilesafe:desoff="测试自动更新已开启">>
+        mobilesafe:destitle="电话归属地的显示设置"
+        mobilesafe:deson="归属地的显示已开启"
+        mobilesafe:desoff="归属地的显示已关闭">>
     </com.onezao.zao.mobilesafe.view.SettingItemView>
 
-    <com.onezao.zao.mobilesafe.view.SettingItemView
+    <com.onezao.zao.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_toast_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.onezao.zao.mobilesafe.view.SettingItemView>
+    </com.onezao.zao.mobilesafe.view.SettingClickView>
 
-    <com.onezao.zao.mobilesafe.view.SettingItemView
+    <com.onezao.zao.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_toast_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.onezao.zao.mobilesafe.view.SettingItemView>
+    </com.onezao.zao.mobilesafe.view.SettingClickView>
 
 </LinearLayout>

@@ -3,4 +3,5 @@
     <dimen name="text_size">18sp</dimen>
     <dimen name="title_size">20sp</dimen>
     <dimen name="maquee_text">6sp</dimen>
+    <dimen name="suitable_size">32sp</dimen>
 </resources>

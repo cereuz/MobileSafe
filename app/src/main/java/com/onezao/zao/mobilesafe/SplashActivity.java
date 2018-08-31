@@ -47,6 +47,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * 1、在A里面设置一个静态的变量instance,初始化为this
+
+ public static A instance = null；
+
+ void onCreate(){
+ instance = this;
+
+ }
+
+ 2、在需要关闭页面的地方调用A.instance.finish();
+ */
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -78,6 +90,9 @@ public class SplashActivity extends AppCompatActivity {
     // 两次点击按钮之间的点击间隔不能少于1000毫秒
     private static final int MIN_CLICK_DELAY_TIME = 1000;
     private static long lastClickTime;
+
+    //设置一个静态的变量instance,
+    public static SplashActivity instance = null;
 
     private Handler mHandler = new Handler(){
         @Override
@@ -130,6 +145,9 @@ public class SplashActivity extends AppCompatActivity {
 /*        //去除当前Activity的头部.  去除当前Activity，一个一个的去除 。 Eclipse上可以使用
         requestWindowFeature(Window.FEATURE_NO_TITLE);*/
         setContentView(R.layout.activity_splash);
+
+        //初始化定义的instance为this
+        instance = this;
 
         //初始化UI
         initUI();
@@ -500,6 +518,7 @@ public class SplashActivity extends AppCompatActivity {
                         Manifest.permission.RECEIVE_BOOT_COMPLETED,
                         Manifest.permission.SEND_SMS,
                         Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.PROCESS_OUTGOING_CALLS,
 
                         Manifest.permission.READ_CONTACTS,
                         Manifest.permission.READ_PHONE_STATE,
@@ -532,6 +551,7 @@ public class SplashActivity extends AppCompatActivity {
                         Manifest.permission.RECEIVE_BOOT_COMPLETED,
                         Manifest.permission.SEND_SMS,
                         Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.PROCESS_OUTGOING_CALLS,
 
                         Manifest.permission.VIBRATE,
                         Manifest.permission.CAMERA,
@@ -613,6 +633,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 System.out.println("点击了取消按钮");
                 Toast.makeText(SplashActivity.this, negative, Toast.LENGTH_SHORT).show();
+                //关闭Activity
                 SplashActivity.this.finish();
             }
         });
