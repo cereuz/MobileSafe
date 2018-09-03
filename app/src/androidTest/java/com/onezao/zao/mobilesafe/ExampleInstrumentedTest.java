@@ -80,7 +80,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void TestUpdate(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
-        dao.update("1688",1 + "",ZaoUtils.getSystemTimeMore(1));
+        dao.update("1688","12306",1 + "",ZaoUtils.getSystemTimeMore(1));
 
         //直接复制到SD卡
         TestCopy();
