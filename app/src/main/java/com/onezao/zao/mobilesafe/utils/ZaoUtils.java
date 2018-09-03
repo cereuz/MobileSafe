@@ -122,12 +122,20 @@ public class ZaoUtils {
     //复制文件
     public static void copyFile(String path1,String path2) {
         // TODO Auto-generated method stub
+        File file2 = new File(path2);
+        if (!file2.getParentFile().exists()) {
+            boolean result = file2.getParentFile().mkdirs();
+            if (!result) {
+                Log.i(ConstantValue.TAG,"文件夹创建失败！！！");
+            }
+        }
+
         //封装数据源
         FileInputStream fis;
         try {
             fis = new FileInputStream(new File(path1));
             //封装目的地
-            FileOutputStream fos = new FileOutputStream(new File(path2));
+            FileOutputStream fos = new FileOutputStream(file2);
 
             int by = 0;
             while((by = fis.read()) != -1){
@@ -171,6 +179,13 @@ public class ZaoUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    //从数据库文件夹复制文件到SD卡
+    public static void copyDBtoSD(Context context){
+        //黑名单的数据库
+        String pathDB = context.getDatabasePath(ConstantValue.DADABASE_MOBILESAFE).getAbsolutePath();
+        ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame/mobilesafe0831.db");
     }
 }
 

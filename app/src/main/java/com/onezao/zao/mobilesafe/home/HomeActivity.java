@@ -19,15 +19,18 @@ import com.onezao.zao.mobilesafe.R;
 import com.onezao.zao.mobilesafe.SplashActivity;
 import com.onezao.zao.mobilesafe.activity.AToolActivity;
 import com.onezao.zao.mobilesafe.activity.BlackNumberActivity;
+import com.onezao.zao.mobilesafe.activity.BlackNumberPagingActivity;
 import com.onezao.zao.mobilesafe.activity.DeviceAdminActivity;
 import com.onezao.zao.mobilesafe.activity.RocketActivity;
 import com.onezao.zao.mobilesafe.activity.SettingActivity;
 import com.onezao.zao.mobilesafe.activity.SetupOverActivity;
 import com.onezao.zao.mobilesafe.activity.WebwithAndroidActivity;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
+import com.onezao.zao.mobilesafe.utils.DataCleanManager;
 import com.onezao.zao.mobilesafe.utils.SpUtils;
 import com.onezao.zao.mobilesafe.utils.ToastUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,8 +93,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case  1 :
                 //跳转到通信卫士列表界面
-                startActivity(new Intent(getApplicationContext(), BlackNumberActivity.class));
-                finish();
+                startActivity(new Intent(getApplicationContext(), BlackNumberPagingActivity.class));
                 break;
             case  7 :
                 //跳转到高级工具功能列表界面
@@ -119,8 +121,17 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent11);
                 finish();
                 break;
+            case  12 :
+                //黑名单查询所有的数据
+                Intent intent12 = new Intent(HomeActivity.this, BlackNumberActivity.class);
+                startActivity(intent12);
+                break;
+            case  13 :
+                //清除应用的所有数据
+                DataCleanManager.DeleteFile(new File("data/data/"+getPackageName()));
+                ToastUtil.showT(this,"清理APP文件数据成功！！");
+                break;
         }
-
     }
 
     //开启 功能  密码对话框
@@ -271,7 +282,7 @@ public class HomeActivity extends AppCompatActivity {
 
     //初始化数据
     private void initData() {
-        String[] dataB = {"手机防盗","通讯卫士","软件管理","设备管理","手机防盗","手机防盗","手机防盗","高级工具","设置中心","WEB交互","管理权限","发射火箭","手机防盗","手机防盗","手机防盗","手机防盗",};
+        String[] dataB = {"手机防盗","通讯卫士","软件管理","设备管理","手机防盗","手机防盗","手机防盗","高级工具","设置中心","WEB交互","管理权限","发射火箭","通讯所有","清理文件","手机防盗","手机防盗",};
         for (int i = 0; i < 16; i++) {
             Book book01 = new Book(dataB[i],R.mipmap.ic_launcher);
             mlsit.add(book01);

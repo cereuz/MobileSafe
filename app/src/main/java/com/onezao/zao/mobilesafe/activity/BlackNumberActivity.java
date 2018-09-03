@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -77,7 +78,7 @@ public class BlackNumberActivity extends AppCompatActivity {
                 super.run();
                 //获取操作黑名单数据库的对象
                 mDao = BlackNumberDao.getInstance(getApplicationContext());
-                //2.查询获取到所有数据
+                //2.查询获取到所有数据   //传入参数表示查询部分数据，开始做分页查询
                 mBlackNumberInfoList = mDao.findAll();
                 //3.通过消息机制，通知主线程可以使用获取到的数据
                 mHandler.sendEmptyMessage(0);
@@ -125,7 +126,7 @@ public class BlackNumberActivity extends AppCompatActivity {
     }
 
     /**
-     * 弹出添加或修改黑名单的对话框
+     * 弹出添加黑名单的对话框
      */
     private void showAddDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -356,7 +357,6 @@ public class BlackNumberActivity extends AppCompatActivity {
      * @param mode
      */
     private void modifyItem(final int position, final String phone, String mode) {
-        {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             final AlertDialog dialog = builder.create();
             View view = View.inflate(getApplicationContext(),R.layout.dialog_add_blacknumber,null);
@@ -386,7 +386,7 @@ public class BlackNumberActivity extends AppCompatActivity {
                     break;
                 case 3 :
                     rb_add_all.setChecked(true);
-                break;
+                    break;
             }
 
             /**
@@ -457,5 +457,4 @@ public class BlackNumberActivity extends AppCompatActivity {
             //显示弹框
             dialog.show();
         }
-    }
 }

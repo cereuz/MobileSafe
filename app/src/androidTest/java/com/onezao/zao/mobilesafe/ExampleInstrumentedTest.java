@@ -37,7 +37,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void TestCopy(){
+    public void testCopy(){
         //数据库文件地址
         //1. 指定访问数据库的路径
 //        String path = "data/data/com.onezao.zao.mobilesafe/files/address.db";
@@ -49,7 +49,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void TestInsert(){
+    public void estInsert(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
         for(int i = 0 ; i < 1000 ; i++){
             if(i < 10){
@@ -65,16 +65,16 @@ public class ExampleInstrumentedTest {
         }
 //        dao.insert("13636120000","2","sunedo@qq.com");
         //直接复制到SD卡
-        TestCopy();
+        testCopy();
     }
 
     @Test
-    public void TestDelete(){
+    public void testDelete(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
         dao.delete("13282380004");
 
         //直接复制到SD卡
-        TestCopy();
+        testCopy();
     }
 
     @Test
@@ -83,11 +83,11 @@ public class ExampleInstrumentedTest {
         dao.update("1688","12306",1 + "",ZaoUtils.getSystemTimeMore(1));
 
         //直接复制到SD卡
-        TestCopy();
+        testCopy();
     }
 
     @Test
-    public void TestFindAll(){
+    public void testFindAll(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
         List<BlackNumberInfo>  list = dao.findAll();
         for(BlackNumberInfo info : list){
@@ -96,7 +96,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void TestFind(){
+    public void testFind(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
         List<BlackNumberInfo>  list = dao.find(10);
         for(BlackNumberInfo info : list){
