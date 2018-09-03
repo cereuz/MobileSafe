@@ -47,7 +47,9 @@ public class RocketActivity extends AppCompatActivity implements View.OnClickLis
                 //开启火箭的服务
                 startService(new Intent(getApplicationContext(),RocketService.class));
                 finish();
-                SplashActivity.instance.finish();
+                if(SplashActivity.instance != null){
+                  SplashActivity.instance.finish();
+                }
                 break;
 
             case R.id.btn_stop_roket :

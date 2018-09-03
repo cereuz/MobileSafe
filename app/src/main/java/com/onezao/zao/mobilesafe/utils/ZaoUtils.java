@@ -53,7 +53,7 @@ public class ZaoUtils {
     @SuppressLint("SimpleDateFormat")
     public  static String getSystemTimeHello() {
         Date date = new Date(System.currentTimeMillis());//获取当前时间
-        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy年MM月dd日 EEEE");
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy年MM月dd日  EEEE");
         String str = mFormat.format(date);
         return str;
     }
