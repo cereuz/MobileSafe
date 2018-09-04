@@ -194,4 +194,50 @@ public class BlackNumberDao {
         db.close();
         return count;
     }
+
+
+    /**
+     * 查询该黑名单号码是否存在
+     *
+     * @param number
+     *            黑马单号码
+     * @return true为存在，false为不存在
+     */
+    public boolean queryNumber(String number) {
+        // 创建数据，每个方法单独创建数据库，以便每次用完数据库后关闭
+        SQLiteDatabase db = bnsOpenHelper.getWritableDatabase();
+        // 查询数据库
+        Cursor query = db.query(ConstantValue.DATABASE_BLACKNUMBER_TABLE_NAME, new String[] { "bn_phone" }, "bn_phone=?",
+                new String[] { number }, null, null, null);
+        // 如果查询到就是存在
+        boolean isExist = query.moveToNext();
+        // 关闭数据库
+        db.close();
+        // 返回结果
+        return isExist;
+    }
+
+    /**
+     * 查询拦截模式
+     *
+     * @param number
+     *            黑马单号码
+     * @return 返回对应的拦截模式，Null为没有
+     */
+    public int queryMode(String number) {
+        // 创建数据，每个方法单独创建数据库，以便每次用完数据库后关闭
+        SQLiteDatabase db = bnsOpenHelper.getWritableDatabase();
+        // 查询数据库
+        Cursor query = db.query(ConstantValue.DATABASE_BLACKNUMBER_TABLE_NAME, new String[] { "bn_mode" }, "bn_phone=?",
+                new String[] { number }, null, null, null);
+        int mode = 0;
+        if (query.moveToNext()) {
+            // 得到拦截模式
+            mode = query.getInt(0);
+        }
+        // 关闭数据库
+        db.close();
+        // 返回结果
+        return mode;
+    }
 }

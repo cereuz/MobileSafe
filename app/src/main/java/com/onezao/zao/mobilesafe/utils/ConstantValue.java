@@ -49,6 +49,10 @@ public class ConstantValue {
      */
     public static final String ADDRESS_SERVICE_CLASS = "com.onezao.zao.mobilesafe.service.AddressService";
     /**
+     * 黑名单服务的类名称
+     */
+    public static final String BLACKNUMBER_SERVICE_CLASS = "com.onezao.zao.mobilesafe.service.BlackNumberService";
+    /**
      * 自定义Toast，设置其不同的样式的索引的key值
      */
     public static final String TOAST_STYLE = "toast_style";

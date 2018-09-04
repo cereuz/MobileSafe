@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.onezao.zao.mobilesafe.R;
 import com.onezao.zao.mobilesafe.service.AddressService;
+import com.onezao.zao.mobilesafe.service.BlackNumberService;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
 import com.onezao.zao.mobilesafe.utils.ServiceUtil;
 import com.onezao.zao.mobilesafe.utils.SpUtils;
@@ -47,7 +48,36 @@ public class SettingActivity extends AppCompatActivity {
         initToastStyle();
         //初始化自定义Toast的位置
         initToastLocation();
+        //初始化黑名单服务的开启和关闭
+        initBlackNumber();
     }
+
+    /**
+     * 初始化黑名单服务的开启和关闭
+     */
+    private void initBlackNumber() {
+            final SettingItemView siv_blacknumber = (SettingItemView)findViewById(R.id.siv_blacknumber);
+            //对服务是否开启的状态做显示,绑定服务是否开启状态并对应显示
+            boolean isRunning = ServiceUtil.isRunning(this,ConstantValue.BLACKNUMBER_SERVICE_CLASS);
+            siv_blacknumber.setCheck(isRunning);
+            //点击过程中，状态（是否开启显示电话归属地）的切换过程
+            siv_blacknumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //返回点击前的状态
+                    boolean isCheck = siv_blacknumber.isCheck();
+                    siv_blacknumber.setCheck(!isCheck);
+                    if(!isCheck){
+                        //如果设置之后，是选中的状态，则开启服务
+                        startService(new Intent(getApplicationContext(),BlackNumberService.class));
+                    } else {
+                        //如果设置之后，是取消的状态，则停止服务
+                        stopService(new Intent(getApplicationContext(),BlackNumberService.class));
+                    }
+                }
+            });
+        }
+
 
     /**
      * 初始化自定义的Toast的显示位置
@@ -122,7 +152,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化权限
+     * 初始化权限，M之后，系统权限需要弹出让用户主动点击同意
      */
     private void initPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

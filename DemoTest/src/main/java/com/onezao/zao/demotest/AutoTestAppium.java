@@ -15,18 +15,18 @@ public class AutoTestAppium {
     public static void main(String[] args){
 
         //  CalculatorTest();
-        // 	KedouNew();
-        MiCalculatorTest();
+         	Zao();
+//        MiCalculatorTest();
     }
 
-    private static void KedouNew() {
+    private static void Zao() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Android Emulator");
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion", "6.0");
-        capabilities.setCapability("appPackage", "com.gcs.mcj.chat");
-        capabilities.setCapability("appActivity", "com.gcs.mcj.chat.activity.MainActivity");
+        capabilities.setCapability("platformVersion", "5.1");
+        capabilities.setCapability("appPackage", "com.onezao.zao.mobilesafe");
+        capabilities.setCapability("appActivity", ".SplashActivity");
 
         AndroidDriver driver = null;
         try {
@@ -35,16 +35,18 @@ public class AutoTestAppium {
             e.printStackTrace();
         }
 
-        driver.findElement(By.id("com.gcs.mcj.chat:id/tab_4")).click();
-//        driver.findElement(By.name("5")).click();
+        driver.findElement(By.id("com.onezao.zao.mobilesafe:id/imageView")).click();
+        driver.findElement(By.id("android:id/button2")).click();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        driver.findElementByName("通讯卫士").click();
+//        driver.findElement(By.name("5")).click();
 
 //        String result = driver.findElement(By.id("com.android.calculator2:id/formula")).getText();
-        String result = driver.findElement(By.id("com.gcs.mcj.chat:id/uid")).getText();
+        String result = driver.findElement(By.id("com.onezao.zao.mobilesafe:id/imageView")).getText();
         System.out.println(result);
 
         driver.quit();

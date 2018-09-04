@@ -142,6 +142,15 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**
+         * 点击桌面图标，重新进入，不会重启
+         */
+        if (!isTaskRoot()) {
+            finish();
+            return;
+        }
+
 /*        //去除当前Activity的头部.  去除当前Activity，一个一个的去除 。 Eclipse上可以使用
         requestWindowFeature(Window.FEATURE_NO_TITLE);*/
         setContentView(R.layout.activity_splash);
@@ -513,13 +522,17 @@ public class SplashActivity extends AppCompatActivity {
                 new String[] {
                         Manifest.permission.INTERNET,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.VIBRATE,
-                        Manifest.permission.CAMERA,
                         Manifest.permission.RECEIVE_BOOT_COMPLETED,
                         Manifest.permission.SEND_SMS,
                         Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.READ_SMS,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.READ_CALL_LOG,
+                        Manifest.permission.WRITE_CALL_LOG,
                         Manifest.permission.PROCESS_OUTGOING_CALLS,
 
+                        Manifest.permission.VIBRATE,
+                        Manifest.permission.CAMERA,
                         Manifest.permission.READ_CONTACTS,
                         Manifest.permission.READ_PHONE_STATE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -551,6 +564,10 @@ public class SplashActivity extends AppCompatActivity {
                         Manifest.permission.RECEIVE_BOOT_COMPLETED,
                         Manifest.permission.SEND_SMS,
                         Manifest.permission.RECEIVE_SMS,
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.READ_CALL_LOG,
+                        Manifest.permission.WRITE_CALL_LOG,
+                        Manifest.permission.READ_SMS,
                         Manifest.permission.PROCESS_OUTGOING_CALLS,
 
                         Manifest.permission.VIBRATE,

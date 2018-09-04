@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -30,6 +31,7 @@ public class ZaoUtils {
     public static String loginToastSaveSucc = "保存用户名和密码成功！";
     public static String loginToastSaveFail = "保存用户名和密码失败！";
     public static  String  pathSD = Environment.getExternalStorageDirectory().getPath();
+    public static  String  pathSD2 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
     public static String SELECTGENDERANDNAME = "请输入姓名并选择性别！";
     public static String DIALOG_TITLE = "版本更新";
     public static String CHECK_VERSION_JSON_URL2 = "http://www.onezao.com/zao.apk";
@@ -118,6 +120,22 @@ public class ZaoUtils {
         String    str    =    formatter.format(curDate);
         return str;
     }
+
+    /**
+     * 调用此方法输入所要转换的时间戳输入例如（1402733340）输出（"2014年06月14日16时09分00秒"）
+     *  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+     *  //2018年07月24日 15时16分27秒 星期二
+     *  SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒SS毫秒 EEEE");
+     * @param date
+     * @return
+     */
+    public static String getDateToString(String date) {
+        long lcc = Long.valueOf(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒SS毫秒 EEEE");
+        String times = sdf.format(new Date(lcc));
+        return times;
+    }
+
 
     //复制文件
     public static void copyFile(String path1,String path2) {

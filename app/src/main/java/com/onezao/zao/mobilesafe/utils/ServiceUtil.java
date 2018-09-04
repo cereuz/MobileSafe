@@ -15,7 +15,10 @@ public class ServiceUtil {
        //1.获取ActivityManager管理者对象，可以去获取当前手机正在运行的所有服务
         ActivityManager mAM = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
        //2.获取手机正在运行的服务
-        List<ActivityManager.RunningServiceInfo> runningServiceInfoList = mAM.getRunningServices(100);
+        List<ActivityManager.RunningServiceInfo> runningServiceInfoList = mAM.getRunningServices(200);
+        if (runningServiceInfoList.size() <= 0) {
+            return false;
+        }
         for(ActivityManager.RunningServiceInfo runningServiceInfo : runningServiceInfoList){
             //4.获取每一个正在运行服务的名称
             if(serviceName.equals(runningServiceInfo.service.getClassName())){
