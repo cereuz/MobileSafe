@@ -1,18 +1,21 @@
 package com.onezao.zao.mobilesafe.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.CircularProgressDrawable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.onezao.zao.mobilesafe.R;
 import com.onezao.zao.mobilesafe.engine.SmsBackUp;
+import com.onezao.zao.mobilesafe.utils.ConstantValue;
 import com.onezao.zao.mobilesafe.utils.ZaoUtils;
+
 
 public class AToolActivity  extends AppCompatActivity implements View.OnClickListener{
     @Override
@@ -90,8 +93,29 @@ public class AToolActivity  extends AppCompatActivity implements View.OnClickLis
                 String filePath = ZaoUtils.pathSD + "/ame/sms0306.xml";
                 SmsBackUp.backupSms(getApplicationContext(),filePath,progressDialog);
                 progressDialog.dismiss();
+
+                //打开其他应用，发邮件
+                emailFile(filePath);
             }
         }.start();
 
+    }
+
+    /**
+     *  跳转到另外一个应用的发邮件Activity
+     */
+    private void emailFile(String path) {
+        try{
+            Intent intent=new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            //参数是包名，类全限定名，注意直接用类名不行
+            ComponentName cn=new ComponentName("com.onezao.zao.zaov",
+                    "com.onezao.zao.javamail.JavaMailSetupActivity");
+            intent.setComponent(cn);
+            intent.putExtra("path",path);
+            startActivity(intent);
+        }catch (Exception e){
+            Log.i(ConstantValue.TAG,"跳转其他应用产生异常。。");
+        }
     }
 }
