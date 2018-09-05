@@ -1,5 +1,6 @@
 package com.onezao.zao.mobilesafe.home;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,11 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.onezao.zao.mobilesafe.R;
-import com.onezao.zao.mobilesafe.SplashActivity;
 import com.onezao.zao.mobilesafe.activity.AToolActivity;
+import com.onezao.zao.mobilesafe.activity.AppManagerActivity;
 import com.onezao.zao.mobilesafe.activity.BlackNumberActivity;
 import com.onezao.zao.mobilesafe.activity.BlackNumberPagingActivity;
 import com.onezao.zao.mobilesafe.activity.DeviceAdminActivity;
+import com.onezao.zao.mobilesafe.activity.FileAndSpaceActivity;
 import com.onezao.zao.mobilesafe.activity.RocketActivity;
 import com.onezao.zao.mobilesafe.activity.SettingActivity;
 import com.onezao.zao.mobilesafe.activity.SetupOverActivity;
@@ -95,6 +97,10 @@ public class HomeActivity extends AppCompatActivity {
                 //跳转到通信卫士列表界面
                 startActivity(new Intent(getApplicationContext(), BlackNumberPagingActivity.class));
                 break;
+            case  2 :
+                //跳转到软件管理列表界面
+                startActivity(new Intent(getApplicationContext(), AppManagerActivity.class));
+                break;
             case  7 :
                 //跳转到高级工具功能列表界面
                 startActivity(new Intent(getApplicationContext(),AToolActivity.class));
@@ -127,11 +133,40 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent12);
                 break;
             case  13 :
-                //清除应用的所有数据
-                DataCleanManager.DeleteFile(new File("data/data/"+getPackageName()));
-                ToastUtil.showT(this,"清理APP文件数据成功！！");
+                //清理文件，内存大小数据
+                Intent intent13 = new Intent(HomeActivity.this, FileAndSpaceActivity.class);
+                startActivity(intent13);
+                break;
+            case  14 :
+                deleteAppDateFile();
                 break;
         }
+    }
+
+    /**
+     * 弹出对话框，删除APP的data文件夹下的文件数据
+     */
+    private void deleteAppDateFile() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("清理自己APP的文件数据");
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("请确认是否删除APP文件内容，一旦删除，数据不可恢复！！！");
+        builder.setPositiveButton("删除", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //清除应用的所有数据
+                DataCleanManager.DeleteFile(new File("data/data/"+getPackageName()));
+                ToastUtil.showT(getApplicationContext(),"清理APP文件数据成功！！");
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 
     //开启 功能  密码对话框
@@ -282,7 +317,7 @@ public class HomeActivity extends AppCompatActivity {
 
     //初始化数据
     private void initData() {
-        String[] dataB = {"手机防盗","通讯卫士","软件管理","设备管理","手机防盗","手机防盗","手机防盗","高级工具","设置中心","WEB交互","管理权限","发射火箭","通讯所有","清理文件","手机防盗","手机防盗",};
+        String[] dataB = {"手机防盗","通讯卫士","软件管理","设备管理","手机防盗","手机防盗","手机防盗","高级工具","设置中心","WEB交互","管理权限","发射火箭","通讯所有","内存空间","清理文件","手机防盗",};
         for (int i = 0; i < 16; i++) {
             Book book01 = new Book(dataB[i],R.mipmap.ic_launcher);
             mlsit.add(book01);
