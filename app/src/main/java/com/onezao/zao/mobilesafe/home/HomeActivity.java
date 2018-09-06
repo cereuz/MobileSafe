@@ -18,7 +18,7 @@ import android.widget.EditText;
 
 import com.onezao.zao.mobilesafe.R;
 import com.onezao.zao.mobilesafe.activity.AToolActivity;
-import com.onezao.zao.mobilesafe.activity.AppManagerActivity;
+import com.onezao.zao.mobilesafe.activity.AppManagerMoreActivity;
 import com.onezao.zao.mobilesafe.activity.BlackNumberActivity;
 import com.onezao.zao.mobilesafe.activity.BlackNumberPagingActivity;
 import com.onezao.zao.mobilesafe.activity.DeviceAdminActivity;
@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case  2 :
                 //跳转到软件管理列表界面
-                startActivity(new Intent(getApplicationContext(), AppManagerActivity.class));
+                startActivity(new Intent(getApplicationContext(), AppManagerMoreActivity.class));
                 break;
             case  7 :
                 //跳转到高级工具功能列表界面

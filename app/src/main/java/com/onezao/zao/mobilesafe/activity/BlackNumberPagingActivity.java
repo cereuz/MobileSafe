@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.onezao.zao.mobilesafe.R;
 import com.onezao.zao.mobilesafe.adapter.BlackNumberAdapter;
 import com.onezao.zao.mobilesafe.db.dao.BlackNumberDao;
-import com.onezao.zao.mobilesafe.db.domain.BlackNumberInfo;
+import com.onezao.zao.mobilesafe.db.domain.BNAppInfo;
 import com.onezao.zao.mobilesafe.home.OnItemClickListener;
 import com.onezao.zao.mobilesafe.utils.ToastUtil;
 import com.onezao.zao.mobilesafe.utils.ZaoUtils;
@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class BlackNumberPagingActivity extends AppCompatActivity {
 
-    List<BlackNumberInfo> mBlackNumberInfoList = new ArrayList<BlackNumberInfo>();
+    List<BNAppInfo> mBlackNumberInfoList = new ArrayList<BNAppInfo>();
     BlackNumberDao mDao;
     BlackNumberAdapter mAdapter;
     RecyclerView mRecyclerView;
@@ -184,7 +184,7 @@ public class BlackNumberPagingActivity extends AppCompatActivity {
                             //获取操作黑名单数据库的对象
                             mDao = BlackNumberDao.getInstance(getApplicationContext());
                             //2.查询获取到所有数据   //传入参数表示查询部分数据，开始做分页查询
-                            List<BlackNumberInfo> mData = mDao.find(mBlackNumberInfoList.size() + firstIndex);
+                            List<BNAppInfo> mData = mDao.find(mBlackNumberInfoList.size() + firstIndex);
                             //3.添加下一页数据的过程
                             mBlackNumberInfoList.addAll(mData);
                             //3.通过消息机制，通知主线程可以使用获取到的数据
@@ -295,7 +295,7 @@ public class BlackNumberPagingActivity extends AppCompatActivity {
      * @param mode  对象的模式
      */
     private void addInfoToList(String phone, int mode, String time) {
-        BlackNumberInfo info = new BlackNumberInfo();
+        BNAppInfo info = new BNAppInfo();
         info.setPhone(phone);
         info.setMode(mode + "");
         info.setTime(time);
@@ -311,7 +311,7 @@ public class BlackNumberPagingActivity extends AppCompatActivity {
      * @param time
      */
     private void addInfoToList(int index, String phone, int mode, String time) {
-        BlackNumberInfo info = new BlackNumberInfo();
+        BNAppInfo info = new BNAppInfo();
         info.setPhone(phone);
         info.setMode(mode + "");
         info.setTime(time);
@@ -369,7 +369,7 @@ public class BlackNumberPagingActivity extends AppCompatActivity {
     }
 
     //初始化界面显示
-    private void initRV(final List<BlackNumberInfo> mBlackNumberInfoList) {
+    private void initRV(final List<BNAppInfo> mBlackNumberInfoList) {
 
         //设置RecyclerView管理器
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -381,7 +381,7 @@ public class BlackNumberPagingActivity extends AppCompatActivity {
         /**
          * 打印集合的数据
          */
-        for (BlackNumberInfo info : mBlackNumberInfoList) {
+        for (BNAppInfo info : mBlackNumberInfoList) {
             Log.i("Zao", "Phone = " + info.getPhone() + "  mode = " + info.getMode() + " time = " + info.getTime());
         }
 

@@ -1,6 +1,6 @@
 package com.onezao.zao.mobilesafe.db.domain;
 
-public class BlackNumberInfo {
+public class BNAppInfo {
     private String phone;
     private String mode;
     private String time;

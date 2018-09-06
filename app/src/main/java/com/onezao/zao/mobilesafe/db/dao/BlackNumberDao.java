@@ -6,9 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.onezao.zao.mobilesafe.db.BlackNumberSqliteOpenHelper;
-import com.onezao.zao.mobilesafe.db.domain.BlackNumberInfo;
+import com.onezao.zao.mobilesafe.db.domain.BNAppInfo;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
-import com.onezao.zao.mobilesafe.utils.ZaoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,14 +88,14 @@ public class BlackNumberDao {
      *  查询所有存储的数据，并返回
      * @return   返回list集合  List<BlackNumberInfo>
      */
-    public List<BlackNumberInfo> findAll(){
+    public List<BNAppInfo> findAll(){
         db = bnsOpenHelper.getWritableDatabase();
         Cursor cursor = db.query(ConstantValue.DATABASE_BLACKNUMBER_TABLE_NAME,new String[]{"bn_phone","bn_mode","bn_time"},null,null,null,null,"_bn_id desc");
             //创建存储查询到的数据的集合
-        List<BlackNumberInfo> list = new ArrayList<BlackNumberInfo>();
+        List<BNAppInfo> list = new ArrayList<BNAppInfo>();
         while (cursor.moveToNext()){
             //创建每一条数据的对象
-            BlackNumberInfo blackNumberInfo = new BlackNumberInfo();
+            BNAppInfo blackNumberInfo = new BNAppInfo();
             blackNumberInfo.setPhone(cursor.getString(0));
             blackNumberInfo.setMode(cursor.getString(1));
             blackNumberInfo.setTime(cursor.getString(2));
@@ -114,7 +113,7 @@ public class BlackNumberDao {
      *  查询所有存储的数据，并返回
      * @return   返回list集合  List<BlackNumberInfo>
      */
-    public List<BlackNumberInfo> find(int index){
+    public List<BNAppInfo> find(int index){
         db = bnsOpenHelper.getWritableDatabase();
 /*//        Cursor cursor = db.rawQuery("select bn_phone,bn_mode,bn_time from blacknumber order by _bn_id desc limit ?,20",new String[]{index + ""});
         Cursor cursor= db.query("blacknumber", null, null,
@@ -122,10 +121,10 @@ public class BlackNumberDao {
 //        Cursor cursor = db.query(ConstantValue.DATABASE_BLACKNUMBER_TABLE_NAME,new String[]{"bn_phone","bn_mode","bn_time"},null,null,null,null,"_bn_id desc");*/
         Cursor cursor = db.rawQuery("select bn_phone,bn_mode,bn_time from blacknumber order by _bn_id desc limit ?,20",new String[]{index + ""});
         //创建存储查询到的数据的集合
-        List<BlackNumberInfo> list = new ArrayList<BlackNumberInfo>();
+        List<BNAppInfo> list = new ArrayList<BNAppInfo>();
         while (cursor.moveToNext()){
             //创建每一条数据的对象
-            BlackNumberInfo blackNumberInfo = new BlackNumberInfo();
+            BNAppInfo blackNumberInfo = new BNAppInfo();
             blackNumberInfo.setPhone(cursor.getString(0));
             blackNumberInfo.setMode(cursor.getString(1));
             blackNumberInfo.setTime(cursor.getString(2));
@@ -144,7 +143,7 @@ public class BlackNumberDao {
      *            查询的起始坐标
      * @return 返回保存全部黑名单信息的List
      */
-    public List<BlackNumberInfo> queryLimit(int index) {
+    public List<BNAppInfo> queryLimit(int index) {
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -152,7 +151,7 @@ public class BlackNumberDao {
             e.printStackTrace();
         }
         // 创建list保存所有黑名单信息
-        List<BlackNumberInfo> list = new ArrayList<BlackNumberInfo>();
+        List<BNAppInfo> list = new ArrayList<BNAppInfo>();
         // 创建数据，每个方法单独创建数据库，以便每次用完数据库后关闭
         SQLiteDatabase db = bnsOpenHelper.getWritableDatabase();
         // 查询数据库
@@ -161,7 +160,7 @@ public class BlackNumberDao {
                 new String[] { index + "" });
         while (query.moveToNext()) {
             // 创建blacknumberinfo对象保存每个黑名单的信息
-            BlackNumberInfo info = new BlackNumberInfo();
+            BNAppInfo info = new BNAppInfo();
             // 保存号码
             info.setPhone(query.getString(0));
             // 保存拦截模式

@@ -6,7 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.onezao.zao.mobilesafe.db.dao.BlackNumberDao;
-import com.onezao.zao.mobilesafe.db.domain.BlackNumberInfo;
+import com.onezao.zao.mobilesafe.db.domain.BNAppInfo;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
 import com.onezao.zao.mobilesafe.utils.ZaoUtils;
 
@@ -89,8 +89,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void testFindAll(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
-        List<BlackNumberInfo>  list = dao.findAll();
-        for(BlackNumberInfo info : list){
+        List<BNAppInfo>  list = dao.findAll();
+        for(BNAppInfo info : list){
            Log.i("Zao","Phone = " + info.getPhone() + "  mode = " + info.getMode() + " time = " + info.getTime() );
         }
     }
@@ -98,8 +98,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void testFind(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
-        List<BlackNumberInfo>  list = dao.find(10);
-        for(BlackNumberInfo info : list){
+        List<BNAppInfo>  list = dao.find(10);
+        for(BNAppInfo info : list){
             Log.i("Zao","Phone = " + info.getPhone() + "  mode = " + info.getMode() + " time = " + info.getTime() );
         }
     }

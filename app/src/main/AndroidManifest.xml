@@ -69,6 +69,7 @@
         <activity android:name=".activity.BlackNumberActivity"/>
         <activity android:name=".activity.BlackNumberPagingActivity"/>
         <activity android:name=".activity.AppManagerActivity"/>
+        <activity android:name=".activity.AppManagerMoreActivity"/>
         <activity android:name=".activity.FileAndSpaceActivity"/>
 
         <receiver android:name=".receiver.BootReceiver">

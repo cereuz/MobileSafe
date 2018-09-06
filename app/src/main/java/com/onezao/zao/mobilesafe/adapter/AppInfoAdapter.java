@@ -5,65 +5,70 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.onezao.zao.mobilesafe.R;
-import com.onezao.zao.mobilesafe.db.domain.BNAppInfo;
+import com.onezao.zao.mobilesafe.bean.AppInfo;
 import com.onezao.zao.mobilesafe.home.OnItemClickListener;
 
 import java.util.List;
 
 
-public class BlackNumberAdapter extends RecyclerView.Adapter<BlackNumberAdapter.ViewHolder>{
+public class AppInfoAdapter extends RecyclerView.Adapter<AppInfoAdapter.ViewHolder>{
 
-    private List<BNAppInfo> mBlackNumberInfoList;
+    private List<AppInfo> mAppInfoList;
     private ItemImageViewInterface imageViewInterface;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_bn_phone;
-        TextView tv_bn_mode;
-        TextView tv_bn_time;
-        ImageView iv_bn_delete;
+        TextView tv_appinfo_name;
+        TextView tv_appinfo_packagename;
+        TextView tv_appinfo_issdcard;
+        ImageView iv_appinfo_icon;
 
         public ViewHolder(View view) {
             super(view);
-            tv_bn_phone = (TextView) view.findViewById(R.id.tv_appinfo_name);
-            tv_bn_mode = (TextView) view.findViewById(R.id.tv_appinfo_packagename);
-            tv_bn_time = (TextView) view.findViewById(R.id.tv_appinfo_issdcard);
-            iv_bn_delete = (ImageView)view.findViewById(R.id.iv_appinfo_icon);
+            tv_appinfo_name = (TextView) view.findViewById(R.id.tv_appinfo_name);
+            tv_appinfo_packagename = (TextView) view.findViewById(R.id.tv_appinfo_packagename);
+            tv_appinfo_issdcard = (TextView) view.findViewById(R.id.tv_appinfo_issdcard);
+            iv_appinfo_icon = (ImageView)view.findViewById(R.id.iv_appinfo_icon);
         }
     }
 
-    public BlackNumberAdapter(List<BNAppInfo> mBlackNumberInfoList) {
-        this.mBlackNumberInfoList = mBlackNumberInfoList;
+    public AppInfoAdapter(List<AppInfo> mAppInfoList) {
+        this.mAppInfoList = mAppInfoList;
     }
 
     //加载item 的布局  创建ViewHolder实例
     @Override
-    public BlackNumberAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_black_number,parent,false);
-        BlackNumberAdapter.ViewHolder holder = new BlackNumberAdapter.ViewHolder(view);
+    public AppInfoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_app_info,parent,false);
+        AppInfoAdapter.ViewHolder holder = new AppInfoAdapter.ViewHolder(view);
         return holder;
     }
 
     //对RecyclerView子项数据进行赋值
     @Override
-    public void onBindViewHolder(BlackNumberAdapter.ViewHolder holder, final int position) {
-        BNAppInfo blackNumberInfo = mBlackNumberInfoList.get(position);
-        holder.tv_bn_phone.setText(blackNumberInfo.getPhone());
-        holder.tv_bn_time.setText(blackNumberInfo.getTime());
-        holder.iv_bn_delete.setImageResource(R.mipmap.ic_launcher);
-        //模式需要显示文字   拦截模式（1：短信   2：电话   3：拦截所有（短信+电话））
-        switch (Integer.parseInt(blackNumberInfo.getMode())){
-            case 1 :
-              holder.tv_bn_mode.setText("短信");
-                break;
-            case 2 :
-              holder.tv_bn_mode.setText("电话");
-                break;
-            case 3 :
-              holder.tv_bn_mode.setText("所有");
-                break;
+    public void onBindViewHolder(AppInfoAdapter.ViewHolder holder, final int position) {
+
+/*        //
+        *//**
+         * 让屏幕的条目占满下半部分，recyclerView高度不能自适应（item满屏）
+         *//*
+        ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+        layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;*/
+
+
+        AppInfo appInfo = mAppInfoList.get(position);
+        holder.iv_appinfo_icon.setImageDrawable(appInfo.getIcon());
+        holder.tv_appinfo_name.setText(appInfo.getName());
+        holder.tv_appinfo_packagename.setText(appInfo.getPackageName());
+
+        boolean isSdcard = appInfo.isSdcard();
+        if(isSdcard) {
+            holder.tv_appinfo_issdcard.setText("SD卡应用");
+        }  else {
+            holder.tv_appinfo_issdcard.setText("手机应用");
         }
 
         //条目点击事件增加的
@@ -83,7 +88,7 @@ public class BlackNumberAdapter extends RecyclerView.Adapter<BlackNumberAdapter.
         });
 
         //条目item中的ImageView 的点击事件
-        holder.iv_bn_delete.setOnClickListener(new View.OnClickListener() {
+        holder.iv_appinfo_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(imageViewInterface !=null) {
@@ -98,7 +103,7 @@ public class BlackNumberAdapter extends RecyclerView.Adapter<BlackNumberAdapter.
     //返回子项个数
     @Override
     public int getItemCount() {
-        return mBlackNumberInfoList.size();
+        return mAppInfoList.size();
     }
 
     /**
@@ -121,7 +126,7 @@ public class BlackNumberAdapter extends RecyclerView.Adapter<BlackNumberAdapter.
      * 按钮点击事件对应的接口
      */
     public interface ItemImageViewInterface {
-        public void onclick( View view,int position);
+        public void onclick(View view, int position);
     }
 
 }
