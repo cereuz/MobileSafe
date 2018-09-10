@@ -20,10 +20,10 @@ import java.io.File;
 
 public class FileAndSpaceActivity extends AppCompatActivity {
 
-        Button btn_search;
-        TextView tv_disk;
-        TextView tv_room;
-        TextView tv_system;
+        Button btn_space_search;
+        TextView tv_space_disk;
+        TextView tv_space_room;
+        TextView tv_space_system;
 
         String dataTotal;
         String dataUsable;
@@ -123,34 +123,35 @@ public class FileAndSpaceActivity extends AppCompatActivity {
      * 初始化界面
      */
     private void initUI() {
-        btn_search = (Button)findViewById(R.id.btn_search);
-        tv_disk = (TextView)findViewById(R.id.tv_disk);
-        tv_room = (TextView)findViewById(R.id.tv_room);
-        tv_system = (TextView)findViewById(R.id.tv_system);
+        btn_space_search = (Button)findViewById(R.id.btn_space_search);
+        tv_space_disk = (TextView)findViewById(R.id.tv_space_disk);
+        tv_space_room = (TextView)findViewById(R.id.tv_space_room);
+        tv_space_system = (TextView)findViewById(R.id.tv_space_system);
     }
 
 
     public void search(View view){
         setMyText();
-        ZaoUtils.walk(new File(path));
-    }
-
-    private void setMyText() {
-        tv_disk.setText("/data : \n" + "dataTotal : " + dataTotal + "\nUsable : " + dataUsable + "\nFree :　" + dataFree );
-        tv_room.setText("/mnt/sdcard : \n" + "sdcardTotal : " + sdcardTotal + "\nUsable : " + sdcardUsable + "\nFree :　" + sdcardFree +
-                "\n\n/system : \n" + "systemTotal : " + systemTotal + "\nUsable : " + systemUsable + "\nFree :　" + systemFree );
-        tv_system.setText(text);
 
         //
         /**
          * 获取第二个内存卡，如果没有第二个，则返回第一个。
          * 第一个
          * I/ZAO: 路径：/storage/emulated/0
-           内存大小Byte：1.50 GB
+         内存大小Byte：1.50 GB
          */
         path = SDcardUtil.getSecondaryStoragePath(this);
         String pathSize = ZaoUtils.getPathSize(this,path);
         Log.i(ConstantValue.TAG,"路径：" + path);
         Log.i(ConstantValue.TAG,"内存大小Byte：" + pathSize);
+
+        ZaoUtils.walk(new File(path));
+    }
+
+    private void setMyText() {
+        tv_space_disk.setText("/data : \n" + "dataTotal : " + dataTotal + "\nUsable : " + dataUsable + "\nFree :　" + dataFree );
+        tv_space_room.setText("/mnt/sdcard : \n" + "sdcardTotal : " + sdcardTotal + "\nUsable : " + sdcardUsable + "\nFree :　" + sdcardFree +
+                "\n\n/system : \n" + "systemTotal : " + systemTotal + "\nUsable : " + systemUsable + "\nFree :　" + systemFree );
+        tv_space_system.setText(text);
     }
 }
