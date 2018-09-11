@@ -176,6 +176,8 @@ public class SplashActivity extends AppCompatActivity {
     private void initDB() {
         //1.归属地的数据库的拷贝过程
         initAddressDB("address.db");
+        //2.初始化常用号码数据库的拷贝过程
+        initAddressDB("commonnum.db");
     }
 
     /**

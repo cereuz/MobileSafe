@@ -71,6 +71,7 @@
         <activity android:name=".activity.AppManagerActivity"/>
         <activity android:name=".activity.AppManagerMoreActivity"/>
         <activity android:name=".activity.FileAndSpaceActivity"/>
+        <activity android:name=".activity.CommonNumberQueryActivity"/>
 
         <receiver android:name=".receiver.BootReceiver">
             <intent-filter>

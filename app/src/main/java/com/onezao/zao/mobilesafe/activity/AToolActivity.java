@@ -25,16 +25,8 @@ public class AToolActivity  extends AppCompatActivity implements View.OnClickLis
 
         //电话号码归属地查询方法
         initPhoneLocation();
-        //短信备份
-        initSMSBackup();
     }
 
-    /**
-     * 短信备份
-     */
-    private void initSMSBackup() {
-
-    }
 
     /**
      * 查询电话号码归属地
@@ -57,14 +49,19 @@ public class AToolActivity  extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
          switch (view.getId()){
+             //归属地查询
              case R.id.tv_atool_location :
                  startActivity(new Intent(getApplicationContext(),QueryAddressActivity.class));
                  break;
 
+             //短信备份
              case R.id.tv_atool_sms_backup :
                  showProgressDialog();
                  break;
+
+             //常用号码查询
              case R.id.tv_atool_ofenuse :
+                 startActivity(new Intent(getApplicationContext(),CommonNumberQueryActivity.class));
                  break;
              case R.id.tv_atool_applock :
                  break;
