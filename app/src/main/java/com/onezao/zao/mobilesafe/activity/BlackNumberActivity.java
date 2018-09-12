@@ -279,7 +279,7 @@ public class BlackNumberActivity extends AppCompatActivity {
         mHandler.sendEmptyMessage(1);
 
         //黑名单的数据库
-        String pathDB = getDatabasePath(ConstantValue.DADABASE_MOBILESAFE).getAbsolutePath();
+        String pathDB = getDatabasePath(ConstantValue.DADABASE_BLACKNUMBER).getAbsolutePath();
         ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame/mobilesafe0831.db");
     }
 

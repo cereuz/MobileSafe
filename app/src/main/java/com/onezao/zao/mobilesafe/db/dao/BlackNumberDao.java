@@ -21,7 +21,7 @@ public class BlackNumberDao {
     //1.私有化构造方法
     private BlackNumberDao(Context context){
         //创建数据库以及其表结构
-        bnsOpenHelper = new BlackNumberSqliteOpenHelper(context, ConstantValue.DADABASE_MOBILESAFE,1);
+        bnsOpenHelper = new BlackNumberSqliteOpenHelper(context, ConstantValue.DADABASE_BLACKNUMBER,1);
     };
     //2.声明一个当前类的对象
     private static BlackNumberDao blackNumberDao = null;

@@ -64,6 +64,7 @@ public class AToolActivity  extends AppCompatActivity implements View.OnClickLis
                  startActivity(new Intent(getApplicationContext(),CommonNumberQueryActivity.class));
                  break;
              case R.id.tv_atool_applock :
+
                  break;
          }
     }

@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -205,7 +204,7 @@ public class ZaoUtils {
     //从数据库文件夹复制文件到SD卡
     public static void copyDBtoSD(Context context) {
         //黑名单的数据库
-        String pathDB = context.getDatabasePath(ConstantValue.DADABASE_MOBILESAFE).getAbsolutePath();
+        String pathDB = context.getDatabasePath(ConstantValue.DADABASE_BLACKNUMBER).getAbsolutePath();
         ZaoUtils.copyFile(pathDB, ZaoUtils.pathSD + "/ame/mobilesafe0831.db");
     }
 

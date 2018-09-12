@@ -5,7 +5,9 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
+import com.onezao.zao.mobilesafe.db.dao.AppLockDao;
 import com.onezao.zao.mobilesafe.db.dao.BlackNumberDao;
+import com.onezao.zao.mobilesafe.db.domain.AppLockInfo;
 import com.onezao.zao.mobilesafe.db.domain.BNAppInfo;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
 import com.onezao.zao.mobilesafe.utils.ZaoUtils;
@@ -13,6 +15,7 @@ import com.onezao.zao.mobilesafe.utils.ZaoUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -36,6 +39,66 @@ public class ExampleInstrumentedTest {
 
     }
 
+
+    /**
+     * AppLock的插入测试
+     */
+    @Test
+    public void testAppLockInsert(){
+        AppLockDao dao = AppLockDao.getInstance(appContext);
+        for(int i = 0 ; i < 1000 ; i++){
+            if(i < 10){
+                dao.insert("1328238000" + i,ZaoUtils.getSystemTimeMore(1));
+                ZaoUtils.sleep(20);
+            }  else if(i < 100){
+                dao.insert("132823800" + i,ZaoUtils.getSystemTimeMore(1));
+                ZaoUtils.sleep(20);
+            }  else if (i < 1000){
+                dao.insert("13282380" + i,ZaoUtils.getSystemTimeMore(1));
+                ZaoUtils.sleep(10);
+            }
+        }
+
+        /**
+         *  String pathDB = appContext.getDatabasePath(ConstantValue.DADABASE_APPLOCK).getAbsolutePath();
+         *  ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame/msAppLock.db");
+         *  ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame" + File.separator +"msAppLock" + ".db");
+         */
+        //直接复制到SD卡
+        copyFile(ConstantValue.DADABASE_APPLOCK,"msAppLock");
+    }
+
+    public void copyFile(String from,String to){
+        //直接复制到SD卡
+        String pathDB = appContext.getDatabasePath(from).getAbsolutePath();
+        ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame" + File.separator + to + ".db");
+    }
+
+    /**
+     * AppLock的数据库数据的删除操作
+     */
+    @Test
+    public void testAppLockDelete(){
+        AppLockDao dao = AppLockDao.getInstance(appContext);
+        dao.delete("13282380009");
+
+        //直接复制到SD卡
+        String pathDB = appContext.getDatabasePath(ConstantValue.DADABASE_APPLOCK).getAbsolutePath();
+        ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame/msAppLock.db");
+    }
+
+    /**
+     * AppLock的数据库数据的查询操作
+     */
+    @Test
+    public void testAppLockFindAll(){
+        AppLockDao dao = AppLockDao.getInstance(appContext);
+        List<AppLockInfo>  list = dao.findAll();
+        for(AppLockInfo info : list){
+            Log.i("Zao","PackageName = " + info.getPackagename() + " time = " + info.getTime() );
+        }
+    }
+
     @Test
     public void testCopy(){
         //数据库文件地址
@@ -44,12 +107,12 @@ public class ExampleInstrumentedTest {
 
 //        ZaoUtils.copyFile(ZaoUtils.pathSD + "/ame/mobilesafe.db",ZaoUtils.pathSD + "/ame/xopy.db");
         //黑名单的数据库
-        String pathDB = appContext.getDatabasePath(ConstantValue.DADABASE_MOBILESAFE).getAbsolutePath();
+        String pathDB = appContext.getDatabasePath(ConstantValue.DADABASE_BLACKNUMBER).getAbsolutePath();
         ZaoUtils.copyFile(pathDB,ZaoUtils.pathSD + "/ame/mobilesafe0831.db");
     }
 
     @Test
-    public void estInsert(){
+    public void testInsert(){
         BlackNumberDao dao = BlackNumberDao.getInstance(appContext);
         for(int i = 0 ; i < 1000 ; i++){
             if(i < 10){

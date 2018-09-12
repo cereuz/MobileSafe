@@ -67,15 +67,27 @@ public class ConstantValue {
     /**
      * 创建黑名单数据库
      */
-    public static final String DADABASE_MOBILESAFE = "mobilesafe_bn";
+    public static final String DADABASE_BLACKNUMBER = "mobilesafe_bn";
+    /**
+     * 程序锁的数据库的名称
+     */
+    public static final String DADABASE_APPLOCK = "mobilesafe_applock";
    /**
      * 创建黑名单数据库的表
      */
     public static final String DATABASE_TABLE_BLACKNUMBER = "create table blacknumber (_bn_id integer primary key autoincrement , bn_phone varchar(20),bn_mode varchar(6),bn_time varchar(60));";
     /**
+     * 创建程序锁数据库的表
+     */
+    public static final String DATABASE_CREATE_TABLE_APPLOCK = "CREATE table applock (_id integer primary key autoincrement,packagename varchar(60),time varchar(60));";
+    /**
      * 数据库表的名称
      */
     public static final String DATABASE_BLACKNUMBER_TABLE_NAME = "blacknumber";
+    /**
+     * AppLock数据库表的名称
+     */
+    public static final String DATABASE_APPLOCK_TABLE_NAME = "applock";
     /**
      *  时间常量，4秒钟  即 4000 毫秒
      */
