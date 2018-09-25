@@ -90,7 +90,6 @@ public class BlackNumberAdapter extends RecyclerView.Adapter<BlackNumberAdapter.
 //                  接口实例化后的而对象，调用重写后的方法
                     imageViewInterface.onclick(v,position);
                 }
-
             }
         });
     }

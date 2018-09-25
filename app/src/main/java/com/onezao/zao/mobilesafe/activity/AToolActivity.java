@@ -63,8 +63,9 @@ public class AToolActivity  extends AppCompatActivity implements View.OnClickLis
              case R.id.tv_atool_ofenuse :
                  startActivity(new Intent(getApplicationContext(),CommonNumberQueryActivity.class));
                  break;
+             //程序锁功能
              case R.id.tv_atool_applock :
-
+                 startActivity(new Intent(getApplicationContext(),AppLockActivity.class));
                  break;
          }
     }

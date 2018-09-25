@@ -99,6 +99,19 @@ public class ExampleInstrumentedTest {
         }
     }
 
+
+    /**
+     * AppLock的数据库数据的查询操作
+     */
+    @Test
+    public void testAppLockFindAll2(){
+        AppLockDao dao = AppLockDao.getInstance(appContext);
+        List<String>  list = dao.findAll("packagename");
+        for(String packageName : list){
+            Log.i("Zao","PackageName = " + packageName);
+        }
+    }
+
     @Test
     public void testCopy(){
         //数据库文件地址

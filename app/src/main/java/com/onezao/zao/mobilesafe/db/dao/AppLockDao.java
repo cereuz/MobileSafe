@@ -80,4 +80,21 @@ public class AppLockDao {
         db.close();
         return appLockInfoList;
     }
+
+    /**
+     * 查询所有存储到数据库中的数据，并存储到一个集合上
+     * @return
+     */
+    public List<String> findAll(String packageName){
+        db = appLockOpenHelper.getWritableDatabase();
+
+        Cursor cursor = db.query(ConstantValue.DATABASE_APPLOCK_TABLE_NAME,new String[]{packageName},null,null,null,null,null);
+        List<String>  appLockInfoList = new ArrayList<String>();
+        while (cursor.moveToNext()){
+            appLockInfoList.add(cursor.getString(0));
+        }
+        cursor.close();
+        db.close();
+        return appLockInfoList;
+    }
 }
