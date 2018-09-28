@@ -7,6 +7,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 import io.appium.java_client.android.AndroidDriver;
 
 
@@ -15,9 +16,15 @@ public class AutoTestAppium {
     public static void main(String[] args){
 
         //  CalculatorTest();
-         	Zao();
+         	TestYLL.startAPP();
 //        MiCalculatorTest();
     }
+
+
+
+
+
+
 
     private static void Zao() {
         DesiredCapabilities capabilities = new DesiredCapabilities();

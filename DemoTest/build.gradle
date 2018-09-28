@@ -2,11 +2,14 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-/*  implementation 'com.github.appium:java-client:5.0.0'
-    compile 'io.appium:java-client:6.1.0'
-    implementation files('src/main/java/libs/selenium-server-standalone-3.13.0.jar')*/
-    implementation files('src/main/java/libs/java-client-4.1.2.jar')
-    implementation files('src/main/java/libs/selenium-server-standalone-2.46.0.jar')
+    /*  implementation 'com.github.appium:java-client:5.0.0'
+        compile 'io.appium:java-client:6.1.0'
+        implementation files('src/main/java/libs/selenium-server-standalone-3.13.0.jar')*/
+        implementation files('src/main/java/libs/java-client-4.1.2.jar')
+        implementation files('src/main/java/libs/selenium-server-standalone-2.46.0.jar')
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
 }
 
 sourceCompatibility = "1.7"
