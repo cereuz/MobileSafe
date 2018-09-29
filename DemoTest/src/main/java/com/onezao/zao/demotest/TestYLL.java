@@ -33,7 +33,10 @@ public class TestYLL {
 
     }
 
-    public static void startAPP(){
+    /**
+     * 未登录状态下
+     */
+    public static void startAPPunLogin(){
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "meizu-pro-6s");
         capabilities.setCapability("automationName", "Appium");
@@ -51,7 +54,7 @@ public class TestYLL {
             e.printStackTrace();
         }
 
-        TestUtils.testSleep(ConstantValue.SIX_SECOND);
+        TestUtils.testSleep(ConstantValue.TEN_SECOND);
         checkPermission(driver);
         TestUtils.swipeToDown(driver, 3 * 1000, 1);
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
@@ -77,7 +80,13 @@ public class TestYLL {
         for(int i = 0; i< 3; i++) {
             driver.findElement(By.id(YLLConstantValue.id_index_homepage)).click();
             driver.findElement(By.id(YLLConstantValue.id_index_found)).click();
+            /**
+             * 因为是未登录状态，这里跳转到登录界面，所以需要点击右上角按钮，返回一下。
+             */
             driver.findElement(By.id(YLLConstantValue.id_index_local)).click();
+            driver.findElement(By.id(YLLConstantValue.id_index_local_rightImg)).click();
+            TestUtils.testSleep(ConstantValue.TWO_SECOND);
+
             driver.findElement(By.id(YLLConstantValue.id_index_profit)).click();
         }
         //退出应用

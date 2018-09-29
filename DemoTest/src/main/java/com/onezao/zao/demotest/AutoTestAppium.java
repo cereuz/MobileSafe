@@ -16,7 +16,7 @@ public class AutoTestAppium {
     public static void main(String[] args){
 
         //  CalculatorTest();
-         	TestYLL.startAPP();
+         	TestYLL.startAPPunLogin();
 //        MiCalculatorTest();
     }
 
