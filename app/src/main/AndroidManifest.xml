@@ -64,7 +64,7 @@
         <activity android:name=".activity.ToastLocationActivity"
                   android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity android:name=".activity.RocketActivity"></activity>
-        <activity android:name=".activity.RocketBackgroundActivgity"
+        <activity android:name=".activity.RocketBackgroundActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity android:name=".activity.BlackNumberActivity"/>
         <activity android:name=".activity.BlackNumberPagingActivity"/>

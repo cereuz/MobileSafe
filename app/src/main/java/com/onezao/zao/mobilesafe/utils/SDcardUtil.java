@@ -1,13 +1,13 @@
 package com.onezao.zao.mobilesafe.utils;
 
-    import java.lang.reflect.Method;
+import java.lang.reflect.Method;
 
-    import android.content.Context;
-    import android.os.storage.StorageManager;
-    import android.util.Log;
+import android.content.Context;
+import android.os.storage.StorageManager;
+import android.util.Log;
 
-    import static android.content.Context.STORAGE_SERVICE;
-    import static com.onezao.zao.mobilesafe.utils.ConstantValue.TAG;
+import static android.content.Context.STORAGE_SERVICE;
+import static com.onezao.zao.mobilesafe.utils.ConstantValue.TAG;
 
 public class SDcardUtil {
     // 获取主存储卡路径

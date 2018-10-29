@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -16,7 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.onezao.zao.mobilesafe.R;
-import com.onezao.zao.mobilesafe.activity.RocketBackgroundActivgity;
+import com.onezao.zao.mobilesafe.activity.RocketBackgroundActivity;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
 import com.onezao.zao.mobilesafe.utils.ZaoUtils;
 
@@ -65,8 +66,16 @@ public class RocketService extends Service{
 //                     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE   //默认能够被触摸
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
         params.format = PixelFormat.TRANSLUCENT;
-        //在响铃的时候显示Toast，和电话类型一致
-        params.type = WindowManager.LayoutParams.TYPE_PHONE;
+/*        //在响铃的时候显示Toast，和电话类型一致
+        params.type = WindowManager.LayoutParams.TYPE_PHONE;*/
+        /**
+         * 兼容8.0
+         */
+        if (Build.VERSION.SDK_INT > 25) {
+            params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        }
         params.setTitle("Toast");
         //指定Toast的所在位置(将吐司指定在左上角)
         params.gravity = Gravity.LEFT + Gravity.TOP;
@@ -136,7 +145,7 @@ public class RocketService extends Service{
                                 //发射火箭
                                 sendRocket();
                                 //产生尾气的Activity
-                                Intent intent = new Intent(getApplicationContext(),RocketBackgroundActivgity.class);
+                                Intent intent = new Intent(getApplicationContext(),RocketBackgroundActivity.class);
                                 //开启火箭后，关闭了唯一的Activity对应的任务栈，所以在此次需要告知新开启的Activity开辟一个新的任务栈
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

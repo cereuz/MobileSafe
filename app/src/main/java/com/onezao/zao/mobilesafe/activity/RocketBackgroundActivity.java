@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.onezao.zao.mobilesafe.R;
 
-public class RocketBackgroundActivgity extends Activity{
+public class RocketBackgroundActivity extends Activity{
 
     private Handler mHandler = new Handler(){
         @Override
