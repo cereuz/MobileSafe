@@ -1,8 +1,9 @@
-package com.onezao.zao.demotest;
+package com.zao;
 
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,16 +14,14 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class AutoTestAppium {
 
-    public static void main(String[] args){
+    @Test
+    public static void test( ){
 
         //  CalculatorTest();
          	TestYLL.startAPPunLogin();
+
 //        MiCalculatorTest();
     }
-
-
-
-
 
 
 
@@ -137,6 +136,4 @@ public class AutoTestAppium {
             driver.quit();
         }
     }
-
-
 }

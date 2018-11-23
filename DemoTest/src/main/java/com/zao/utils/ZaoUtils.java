@@ -1,7 +1,4 @@
-package com.onezao.zao.demotest;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+package com.zao.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +15,6 @@ import java.util.Locale;
  *  pathSD  :   获取SD卡路径
  */
 public class ZaoUtils {
-    private static final Logger LOGGER = LogManager.getLogger(ZaoUtils.class);
     public static String ONEZAO = "onezao";
 
     //复制文件
@@ -74,32 +70,25 @@ public class ZaoUtils {
             case 1:
                 mFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒SS毫秒 EEEE");
                 //2018年07月24日 15时16分27秒 星期二
-                LOGGER.info(mFormat.format(date));
                 break;
 
             case 2:
                 mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss EEEE", Locale.ENGLISH);
-                LOGGER.info(mFormat.format(date));
                 break;
             case 3:
                 mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                LOGGER.info(mFormat.format(date));
                 break;
             case 4:
                 mFormat = new SimpleDateFormat("yyyy/MM/dd");
-                LOGGER.info(mFormat.format(date));
                 break;
             case 5:
                 mFormat = new SimpleDateFormat("HH-mm-ss");
-                LOGGER.info(mFormat.format(date));
                 break;
             case 6:
                 mFormat = new SimpleDateFormat("EEEE");
-                LOGGER.info(mFormat.format(date));
                 break;
             case 7:
                 mFormat = new SimpleDateFormat("E");
-                LOGGER.info(mFormat.format(date));
                 break;
 
             case 8:

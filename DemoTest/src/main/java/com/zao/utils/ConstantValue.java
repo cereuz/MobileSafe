@@ -1,4 +1,4 @@
-package com.onezao.zao.demotest;
+package com.zao.utils;
 
 public class ConstantValue {
     public static long ONE_SECOND = 1000;

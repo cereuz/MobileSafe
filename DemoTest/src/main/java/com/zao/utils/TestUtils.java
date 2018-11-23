@@ -1,10 +1,14 @@
-package com.onezao.zao.demotest;
+package com.zao.utils;
 
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 
 public class TestUtils {
+
+    public static boolean isExist = true;
+
     /**
      * 测试间隔的时候睡眠时间。单位：毫秒。
      * @param time
@@ -80,6 +84,26 @@ public class TestUtils {
         for (int i = 0; i < num; i++) {
             driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);
             testSleep(3 * 1000);
+        }
+    }
+
+
+    /**
+     * 检测获取系统权限的弹框，并点击确认
+     * @param driver
+     */
+    public static void checkPermission(AndroidDriver driver) {
+        try{
+            while (isExist){
+                WebElement elementPermission = driver.findElementById("com.android.packageinstaller:id/permission_allow_button");
+                if (elementPermission.isDisplayed()){
+                    elementPermission.click();
+                    TestUtils.testSleep(ConstantValue.TWO_SECOND);
+                } else {
+                    isExist = false;
+                }
+            }
+        } catch (Exception e){
         }
     }
 
