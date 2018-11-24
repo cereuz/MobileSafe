@@ -6,7 +6,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：%method 输出执行日志请求的方法名。尽量避免使用，除非执行速度不造成任何问题。：那个logger是class的全名,后面的数字代表限制最长的字符:：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg %n %caller{2}</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg %n %caller{2} </pattern>
         </encoder>
     </appender>
     <!-- 按照每天生成日志文件 -->
@@ -19,7 +19,7 @@
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg - %caller{2}</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg - %caller{2} </pattern>
         </encoder>
         <!--日志文件最大的大小-->
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">

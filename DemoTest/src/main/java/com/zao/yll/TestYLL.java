@@ -1,7 +1,6 @@
-package com.zao;
+package com.zao.yll;
 
 import com.zao.utils.ConstantValue;
-import com.zao.utils.Log;
 import com.zao.utils.TestUtils;
 
 import org.openqa.selenium.By;
@@ -19,13 +18,13 @@ public class TestYLL {
     @Test
     public static void testYLL(){
         /**
-         * Î´µÇÂ¼×´Ì¬ÏÂÆô¶¯APP
+         * æœªç™»å½•çŠ¶æ€ä¸‹å¯åŠ¨APP
          */
         startAPPunLogin();
     }
 
     /**
-     * °²×°APP
+     * å®‰è£…APP
      */
     public static void installAPP(){
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -33,7 +32,7 @@ public class TestYLL {
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "7.1.1");
-        capabilities.setCapability("app", apkPath); //²»ĞèÒªÔÙ´Î°²×°
+        capabilities.setCapability("app", apkPath); //ä¸éœ€è¦å†æ¬¡å®‰è£…
 
         AndroidDriver driver = null;
         try {
@@ -48,15 +47,15 @@ public class TestYLL {
     }
 
     /**
-     * Î´µÇÂ¼×´Ì¬ÏÂ
+     * æœªç™»å½•çŠ¶æ€ä¸‹ å¯åŠ¨APPï¼Œæ•´ä½“ç•Œé¢çš„ç‚¹å‡»æ“ä½œ
      */
     @Test
     public static void startAPPunLogin(){
 
-        AndroidDriver driver = initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,YLLConstantValue.AUTOMATION_NAME,
-                                          YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION,
+        AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,YLLConstantValue.AUTOMATION_NAME,
+                                          YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION_711,
                                           YLLConstantValue.APP_PACKAGE_YLL, YLLConstantValue.APP_ACTIVITY_YLL,
-                                          YLLConstantValue.NO_RESET_TRUE);
+                                          YLLConstantValue.NO_RESET_TRUE,YLLConstantValue.URL_PORT_4723);
 
         TestUtils.swipeToDown(driver, 3 * 1000, 1);
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
@@ -71,66 +70,27 @@ public class TestYLL {
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
 
         /**
-         * µã»÷·µ»Ø°´Å¥£¬½øÈëÖ÷Ò³¡£
+         * ç‚¹å‡»è¿”å›æŒ‰é’®ï¼Œè¿›å…¥ä¸»é¡µã€‚
          */
         driver.findElement(By.id(YLLConstantValue.id_index_iv_back)).click();
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
 
         /**
-         * µã»÷µ×²¿µÄ¼¸¸ö°´Å¥
+         * ç‚¹å‡»åº•éƒ¨çš„å‡ ä¸ªæŒ‰é’®
          */
         for(int i = 0; i< 3; i++) {
             driver.findElement(By.id(YLLConstantValue.id_index_homepage)).click();
             driver.findElement(By.id(YLLConstantValue.id_index_found)).click();
             /**
-             * ÒòÎªÊÇÎ´µÇÂ¼×´Ì¬£¬ÕâÀïÌø×ªµ½µÇÂ¼½çÃæ£¬ËùÒÔĞèÒªµã»÷ÓÒÉÏ½Ç°´Å¥£¬·µ»ØÒ»ÏÂ¡£
+             * å› ä¸ºæ˜¯æœªç™»å½•çŠ¶æ€ï¼Œè¿™é‡Œè·³è½¬åˆ°ç™»å½•ç•Œé¢ï¼Œæ‰€ä»¥éœ€è¦ç‚¹å‡»å³ä¸Šè§’æŒ‰é’®ï¼Œè¿”å›ä¸€ä¸‹ã€‚
              */
             driver.findElement(By.id(YLLConstantValue.id_index_local)).click();
             driver.findElement(By.id(YLLConstantValue.id_index_local_rightImg)).click();
             TestUtils.testSleep(ConstantValue.TWO_SECOND);
 
-            driver.findElement(By.id(YLLConstantValue.id_index_profit)).click();
+            driver.findElement(By.id(YLLConstantValue.id_index_profil)).click();
         }
-        //ÍË³öÓ¦ÓÃ
+        //é€€å‡ºåº”ç”¨
 //        driver.quit();
-    }
-
-    /**
-     * ³õÊ¼»¯Çı¶¯Á¬½ÓÉè±¸£¬Æô¶¯APP£¬ ¼ì²éÈ¨ÏŞ
-     * @param deviceName
-     * @param automationName
-     * @param platformName
-     * @param platformVersion
-     * @param appPackage
-     * @param appActivity
-     * @param noReset
-     * @return
-     */
-    private static AndroidDriver initDevice(String deviceName,String automationName,String platformName,String platformVersion,String appPackage,String appActivity,boolean noReset) {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", deviceName);
-        capabilities.setCapability("automationName", automationName);
-        capabilities.setCapability("platformName", platformName);
-        capabilities.setCapability("platformVersion", platformVersion);
-//        capabilities.setCapability("platformVersion", "5.1");
-        capabilities.setCapability("appPackage", appPackage);
-        capabilities.setCapability("appActivity", appActivity);
-        capabilities.setCapability("noReset", noReset); //²»ĞèÒªÔÙ´Î°²×°
-
-        Log.debug("startAPPunLogin");
-
-        AndroidDriver driver = null;
-        try {
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        Log.info("³õÊ¼»¯Çı¶¯Á¬½ÓÉè±¸£¬Æô¶¯APP£¬ ³É¹¦");
-
-        TestUtils.testSleep(ConstantValue.TEN_SECOND);
-        TestUtils.checkPermission(driver);
-        Log.info("¼ì²éAPPÈ¨ÏŞ²¢Í¬Òâ£¬ ³É¹¦");
-        return driver;
     }
 }

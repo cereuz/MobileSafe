@@ -1,6 +1,13 @@
 package com.zao.utils;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -8,6 +15,47 @@ import io.appium.java_client.android.AndroidDriver;
 public class TestUtils {
 
     public static boolean isExist = true;
+    public static AndroidDriver driver;
+    /**
+     * 初始化驱动连接设备，启动APP， 检查权限
+     * @param deviceName
+     * @param automationName
+     * @param platformName
+     * @param platformVersion
+     * @param appPackage
+     * @param appActivity
+     * @param noReset
+     * @return
+     */
+    public static AndroidDriver initDevice(String deviceName, String automationName, String platformName, String platformVersion, String appPackage, String appActivity, boolean noReset,String urlPort) {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("deviceName", deviceName);
+        capabilities.setCapability("automationName", automationName);
+        capabilities.setCapability("platformName", platformName);
+        capabilities.setCapability("platformVersion", platformVersion);
+//        capabilities.setCapability("platformVersion", "5.1");
+        capabilities.setCapability("appPackage", appPackage);
+        capabilities.setCapability("appActivity", appActivity);
+        capabilities.setCapability("unicodeKeyboard", "True"); //Appium版本1.3.3以上，解决无法输入中文问题  使用unicode编码
+        capabilities.setCapability("resetKeyboard", "True"); //在关闭后重置设备的默认输入法
+        capabilities.setCapability("noReset", noReset); //不需要再次安装
+
+        Log.debug("startAPPunLogin");
+
+//        AndroidDriver driver = null;
+        try {
+            driver = new AndroidDriver(new URL(urlPort), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.info("init and connect device , start APP. SUCCESS");
+
+        TestUtils.testSleep(ConstantValue.TEN_SECOND);
+        TestUtils.checkPermission(driver);
+        Log.info("check Permissions And Allow it , SUCCESS");
+        return driver;
+    }
 
     /**
      * 测试间隔的时候睡眠时间。单位：毫秒。
@@ -107,4 +155,17 @@ public class TestUtils {
         }
     }
 
+
+    /**
+     * 执行adb命令
+     * @param s 要执行的命令
+     */
+    public static void excuteAdbShell(String s) {
+        Runtime runtime=Runtime.getRuntime();
+        try{
+            runtime.exec(s);
+        }catch(Exception e){
+            Log.debug("执行命令:"+s+"出错");
+        }
+    }
 }

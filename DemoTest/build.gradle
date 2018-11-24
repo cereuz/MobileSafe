@@ -1,5 +1,9 @@
 apply plugin: 'java-library'
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     /*  implementation 'com.github.appium:java-client:5.0.0'

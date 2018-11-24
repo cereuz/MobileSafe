@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/DemoTest/src/main/java/com/zao/TestYLL.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/DemoTest/src/main/java/com/zao/utils/TestZ.java" charset="GBK" />
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/DemoTest/src/main/java/com/zao/utils/Log.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/DemoTest/src/main/java/com/zao/utils/ZaoUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DemoTest/src/main/java/com/zao/yll/TestYLL.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
