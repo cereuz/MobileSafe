@@ -2,6 +2,7 @@ package com.onezao.zao.mobilesafe;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -24,6 +25,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.view.inputmethod.InputMethodInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ import android.widget.Toast;
 import com.onezao.zao.mobilesafe.home.HomeActivity;
 import com.onezao.zao.mobilesafe.utils.ConstantValue;
 import com.onezao.zao.mobilesafe.utils.DownloadUtil;
+import com.onezao.zao.mobilesafe.utils.LogZ;
 import com.onezao.zao.mobilesafe.utils.SpUtils;
 import com.onezao.zao.mobilesafe.utils.StreamUtil;
 import com.onezao.zao.mobilesafe.utils.ToastUtil;
@@ -46,6 +50,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * 1、在A里面设置一个静态的变量instance,初始化为this
@@ -168,6 +173,19 @@ public class SplashActivity extends AppCompatActivity {
         initAnimation();
         //初始化数据库
         initDB();
+
+        initInput();
+    }
+
+    /**
+     * 打印手机系统的输入法
+     */
+    private void initInput(){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        List<InputMethodInfo> methodList = imm.getInputMethodList();
+        for (InputMethodInfo info : methodList){
+            LogZ.e(info.getId() + " ---- " + info.getPackageName() + " ---- " + info.toString() + "\n");
+        }
     }
 
     /**

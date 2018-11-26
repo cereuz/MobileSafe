@@ -21,7 +21,7 @@ public class YLLConstantValue {
     public static String id_index_found = "com.zjjyy.yilvyou:id/found";
     public static String id_index_local = "com.zjjyy.yilvyou:id/local";
     public static String id_index_local_rightImg = "com.zjjyy.yilvyou:id/rightImg";
-    public static String id_index_profil = "com.zjjyy.yilvyou:id/profit";
+    public static String id_index_profile = "com.zjjyy.yilvyou:id/profit";
     public static String id_index_iv_back = "com.zjjyy.yilvyou:id/iv_back";
     public static String id_back = "com.zjjyy.yilvyou:id/back";
 
@@ -44,6 +44,16 @@ public class YLLConstantValue {
                   */
                 public static String search_search_content = "com.zjjyy.yilvyou:id/search_content";
                 public static String search_tv_clear = "com.zjjyy.yilvyou:id/tv_clear";
+
+
+                /**
+                 * 城市定位
+                 */
+                public static String location_button_city = "com.zjjyy.yilvyou:id/button_city";
+                public static String location_dw_gridview_tv = "com.zjjyy.yilvyou:id/dw_gridview_tv";
+                public static String location_cancel_button = "com.zjjyy.yilvyou:id/cancel_button";
+                public static String location_confirm_button = "com.zjjyy.yilvyou:id/confirm_button";
+
     /**
      * banner图
      */
@@ -85,6 +95,12 @@ public class YLLConstantValue {
     public static String home_ib_choice_ticket_more = "com.zjjyy.yilvyou:id/ib_choice_ticket_more";
 
 
+    public static String home_ticket_et_search = "com.zjjyy.yilvyou:id/et_search";
+    public static String home_ticket_city_click = "com.zjjyy.yilvyou:id/city_click";
+
+
+
+
     /**
      * 周边酒店
      */
@@ -92,4 +108,5 @@ public class YLLConstantValue {
     public static String home_rv_choice_hotel = "com.zjjyy.yilvyou:id/rv_choice_hotel";
     public static String home_ib_choice_hotel_more = "com.zjjyy.yilvyou:id/ib_choice_ticket_hotel";
 
+    public static String xpath_hotel_back = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[1]";
 }

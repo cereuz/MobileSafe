@@ -2,10 +2,6 @@ package com.zao.utils;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -167,5 +163,21 @@ public class TestUtils {
         }catch(Exception e){
             Log.debug("执行命令:"+s+"出错");
         }
+    }
+
+    /**
+     * 卸载 APPIUM的 输入法
+     */
+    public static void uninstallAppiumInput(){
+        driver.removeApp("io.appium.android.ime");
+        Log.debug("REMOVE  io.appium.android.ime");
+    }
+
+
+    /**
+     * 返回 0 到 10之间的整数
+     */
+    public static int randomTen() {
+        return (int) (Math.random() * 10);
     }
 }

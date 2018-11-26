@@ -88,7 +88,7 @@ public class TestYLL {
             driver.findElement(By.id(YLLConstantValue.id_index_local_rightImg)).click();
             TestUtils.testSleep(ConstantValue.TWO_SECOND);
 
-            driver.findElement(By.id(YLLConstantValue.id_index_profil)).click();
+            driver.findElement(By.id(YLLConstantValue.id_index_profile)).click();
         }
         //退出应用
 //        driver.quit();
