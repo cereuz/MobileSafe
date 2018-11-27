@@ -1,5 +1,6 @@
 package com.zao.utils;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -9,7 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class TestUtils {
 
@@ -45,6 +48,7 @@ public class TestUtils {
             driver = new AndroidDriver(new URL(urlPort), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            Lo.error("MalformedURLException ：初始化 driver 失败。"  );
         }
 
 
@@ -76,12 +80,15 @@ public class TestUtils {
     public static void swipeToUp(AppiumDriver<WebElement> driver,int during, int num) {
         try {
             AppiumUtil.before(driver);
-            int width = driver.manage().window().getSize().width;
-            int height = driver.manage().window().getSize().height;
-            Lo.debug("【swipeToUp】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            Dimension size = driver.manage().window().getSize();
+            int height = size.height;
+            int width = size.width;
+            Lo.info("【swipeToUp】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
-                testSleep(3 * 1000);
+                new TouchAction(driver).longPress(PointOption.point(width / 2, 100))
+                        .moveTo(PointOption.point(width / 2, height - 100)).release()
+                        .perform();
+                testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
             Lo.error("WebDriverException : 等待时间过长。操作失败");
@@ -97,13 +104,16 @@ public class TestUtils {
      */
     public static void swipeToDown(AppiumDriver<WebElement> driver,int during, int num) {
         try {
-                AppiumUtil.before(driver);
-            int width = driver.manage().window().getSize().width;
-            int height = driver.manage().window().getSize().height;
-            Lo.debug("【swipeToDown】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            AppiumUtil.before(driver);
+            Dimension size = driver.manage().window().getSize();
+            int height = size.height;
+            int width = size.width;
+            Lo.info("【swipeToDown】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, during);
-                testSleep(3 * 1000);
+                new TouchAction(driver)
+                        .longPress(PointOption.point(width / 2, height - 100))
+                        .moveTo(PointOption.point(width / 2, 100)).release().perform();
+                testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
             Lo.error("WebDriverException : 等待时间过长。操作失败");
@@ -120,12 +130,15 @@ public class TestUtils {
     public static void swipeToLeft(AppiumDriver<WebElement> driver,int during, int num) {
         try {
             AppiumUtil.before(driver);
-            int width = driver.manage().window().getSize().width;
-            int height = driver.manage().window().getSize().height;
-            Lo.debug("【swipeToLeft】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            Dimension size = driver.manage().window().getSize();
+            int height = size.height;
+            int width = size.width;
+            Lo.info("【swipeToLeft】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, during);
-                testSleep(3 * 1000);
+                new TouchAction(driver)
+                        .longPress(PointOption.point(width - 100, height / 2))
+                        .moveTo(PointOption.point(100, height / 2)).release().perform();
+                testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
             Lo.error("WebDriverException : 等待时间过长。操作失败");
@@ -141,13 +154,16 @@ public class TestUtils {
      */
     public static void swipeToRight(AppiumDriver<WebElement> driver, int during, int num) {
         try {
-                AppiumUtil.before(driver);
-            int width = driver.manage().window().getSize().width;
-            int height = driver.manage().window().getSize().height;
-            Lo.debug("【swipeToRight】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            AppiumUtil.before(driver);
+            Dimension size = driver.manage().window().getSize();
+            int height = size.height;
+            int width = size.width;
+            Lo.info("【swipeToRight】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);
-                testSleep(3 * 1000);
+                new TouchAction(driver).longPress(PointOption.point(100, height / 2))
+                        .moveTo(PointOption.point(width - 100, height / 2)).release()
+                        .perform();
+                testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
             Lo.error("WebDriverException : 等待时间过长。操作失败");
@@ -184,7 +200,7 @@ public class TestUtils {
         try{
             runtime.exec(s);
         }catch(Exception e){
-            Lo.debug("执行命令:"+s+"出错");
+            Lo.info("执行命令:"+s+"出错");
         }
     }
 
@@ -193,7 +209,7 @@ public class TestUtils {
      */
     public static void uninstallAppiumInput(){
         driver.removeApp("io.appium.android.ime");
-        Lo.debug("REMOVE  io.appium.android.ime");
+        Lo.info("REMOVE  io.appium.android.ime");
     }
 
 

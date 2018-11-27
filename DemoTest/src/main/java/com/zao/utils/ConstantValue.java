@@ -9,6 +9,7 @@ public class ConstantValue {
     public static long TWENTY_SECOND = 20 * 1000;
 
     public static int SWIPE_DURING = 3 * 1000;
+    public static int SWIPE_SLEEP = 1 * 1000;
     /**
      * 机型区分
      *  1 ：魅族

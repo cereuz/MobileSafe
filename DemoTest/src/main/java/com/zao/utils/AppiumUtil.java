@@ -34,7 +34,7 @@ public class AppiumUtil {
         try {
             before(driver);
             driver.findElement(by).click();
-            Lo.debug(by.toString() + " = 控件点击成功" );
+            Lo.info(by.toString() + " = 控件点击成功" );
         } catch (NoSuchElementException e){
             Lo.error(by.toString() + " = 控件不存在或无法获取到" );
         /* driver.findElement(by.id(by));
@@ -59,7 +59,7 @@ public class AppiumUtil {
             size = byList.size();
             targetEle = byList.get(index);
             targetEle.click();
-            Lo.debug(by.toString() + " 正在点击列表控件，当前点击序号为 ：" + index + " 总共：" + size);
+            Lo.info(by.toString() + " 正在点击列表控件，当前点击序号为 ：" + index + " 总共：" + size);
         } catch (IndexOutOfBoundsException ioobe){
                 Lo.error( by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。"  + " 总共：" + size);
                 /* driver.findElement(by.id(by));
@@ -111,37 +111,8 @@ public class AppiumUtil {
         String string=targetEle.getText();
         return string;
     }
-/*    public static List<WebElement> getElementsByClassAndIndex(AppiumDriver<WebElement> driver,String classname,int index){
-        List<WebElement> lis =null;
-        lis = driver.findElementsByAndroidUIAutomator("new UiSelector().className("+classname+").index("+index+")");
-        return lis;
-    }
-    public static List<WebElement> getElementsByClassAndIndexAndClickable(AppiumDriver<WebElement> driver,String classname,int index){
-        List<WebElement> lis =null;
-        lis = driver.findElementsByAndroidUIAutomator("new UiSelector().className("+classname+").index("+index+").clickable(true)");
-        return lis;
-    }*/
-    /***
-     * 长按某个元素固定时间
-     * @param by
-     * @param index
-     * @param duration
-     */
-    public static void duringpress(AppiumDriver<WebElement> driver,By by, int index, int duration){
-        TouchAction action1 = new TouchAction(driver);
-        action1.press((WebElement) driver.findElements(by).get(index)).waitAction(duration);
-        action1.perform();
-    }
-    /***
-     * 简单的长按,自动放手
-     * @param by
-     * @param index
-     */
-    public static void longpress(AppiumDriver<WebElement> driver,By by, int index){
-        TouchAction action = new TouchAction(driver);
-        WebElement el = (WebElement) driver.findElements(by).get(index);
-        action.longPress(el).perform();
-    }
+
+
     /***
      * 通过class输入文本
      * @param driver
@@ -315,14 +286,7 @@ public class AppiumUtil {
             System.out.println("不存在:"+txt1+"检查失败");
         };
     }
-    /***
-     * 绝对坐标 传入长宽的像素点
-     * @param 宽度从左到右的像素点
-     * @param 长度从上到下的像素点
-     */
-    public static void swipe(AppiumDriver<WebElement> driver,int i,int j,int k,int h,int during){
-        driver.swipe(i, j, k, h, during);
-    }
+
     /***
      * 清除文本内容
      * @param driver
@@ -339,36 +303,7 @@ public class AppiumUtil {
         // driver.sendKeyEvent(67);//一个个的删除
         }
     }
-    /***
-     * 四种滑动方式
-     * @param driver
-     */
-    public static void swipeToUp(AppiumDriver<WebElement> driver,int during) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
-    }
 
-    public static void swipeToDown(AppiumDriver<WebElement> driver,int during) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, during);
-
-    }
-
-    public static void swipeToLeft(AppiumDriver<WebElement> driver,int during) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        driver.swipe(width * 8 / 10, height / 2, width / 10, height / 2, during);
-
-    }
-
-    public static void swipeToRight(AppiumDriver<WebElement> driver,int during) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);
-
-    }
     /***
      * 截图到\Appium_Java\Demo目录下
      * @param driver

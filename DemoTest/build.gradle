@@ -7,10 +7,10 @@ tasks.withType(JavaCompile) {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-/*    implementation 'io.appium:java-client:6.1.0'
-    implementation 'org.seleniumhq.selenium:selenium-java:3.13.0'*/
-    implementation files('src/main/java/libs/java-client-4.1.2.jar')
-      implementation files('src/main/java/libs/selenium-server-standalone-2.46.0.jar')
+    implementation 'io.appium:java-client:6.1.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.13.0'
+/*    implementation files('src/main/java/libs/java-client-4.1.2.jar')
+      implementation files('src/main/java/libs/selenium-server-standalone-2.46.0.jar')*/
 
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'ch.qos.logback:logback-core:1.2.3'

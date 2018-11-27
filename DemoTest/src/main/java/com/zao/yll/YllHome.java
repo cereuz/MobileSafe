@@ -152,7 +152,7 @@ public class YllHome {
         /**
          * 三个列表
          */
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             AppiumUtil.click(driver, By.id(YLLConstantValue.home_ticket_tv_collection));
             clickListItem();
             AppiumUtil.click(driver, By.id(YLLConstantValue.home_ticket_tv_distance));
@@ -177,7 +177,8 @@ public class YllHome {
         AppiumUtil.sendKeys(driver,By.xpath(YLLConstantValue.xpath_hotel_key_words),search_text[TestUtils.random(search_text.length)]);
         AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_hotel_start_search));
 
-        AppiumUtil.click(driver,By.xpath(YLLConstantValue.xpath_hotel_back));
+        AppiumUtil.click(driver, By.id(YLLConstantValue.id_back));  //返回酒店搜索页面
+        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_hotel_back));  //返回首页
     }
 
     /**
@@ -185,7 +186,7 @@ public class YllHome {
          * 2.点击列表条目 ， 返回
          */
     private static void clickListItem() {
-        for(int i = 0 ; i < 2; i++) {
+        for(int i = 0 ; i < 1; i++) {
             TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 3);
             TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 2);
         }
@@ -193,7 +194,7 @@ public class YllHome {
         int size2 = AppiumUtil.getTotal(driver,By.id(YLLConstantValue.home_ticket_tv_item_ticket_title));
         for(int i = 0 ; i < size2; i++) {
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_ticket_tv_item_ticket_title),TestUtils.random(size2));
-            for(int j = 0 ; j < 2; j++) {
+            for(int j = 0 ; j < 1; j++) {
                 TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 3);
                 TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 3);
             }
@@ -211,7 +212,7 @@ public class YllHome {
         TestUtils.testSleep(ConstantValue.ONE_SECOND);
         AppiumUtil.click(driver,By.id(YLLConstantValue.search_search_content));
         AppiumUtil.sendKeys(driver,By.id(YLLConstantValue.search_search_content),message);
-        Lo.debug(message);
+        Lo.info(message);
         AppiumUtil.typeWriting(ConstantValue.DEVICE);  //切换手机系统 自己的输入法 . 1对应魅族
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
         //点击右下角的搜索，即ENTER键  ===输入拼音的时候，输入法会先确认内容，再进行搜索！！==
