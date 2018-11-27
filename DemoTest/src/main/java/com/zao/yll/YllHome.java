@@ -2,17 +2,13 @@ package com.zao.yll;
 
 import com.zao.utils.AppiumUtil;
 import com.zao.utils.ConstantValue;
-import com.zao.utils.Log;
+import com.zao.utils.Lo;
 import com.zao.utils.TestUtils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.TestNGUtils;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
@@ -31,7 +27,18 @@ public class YllHome {
     @BeforeTest
     public static void before(){
         TestUtils.excuteAdbShell(ConstantValue.APPIUM_INPUT);
-        Log.debug("测试开始之前，主动切换成Appium输入法");
+        Lo.debug("测试开始之前，主动切换成Appium输入法");
+
+//        driver.to
+    }
+
+    @AfterTest
+    public static void after(){
+        /**
+         * 切换成系统输入法
+         */
+        AppiumUtil.typeWriting(ConstantValue.DEVICE);  //切换手机系统 自己的输入法
+        Lo.debug("测试结束，主动切换成系统输入法");
     }
 
     @Test
@@ -88,10 +95,9 @@ public class YllHome {
             String home_tv_city = AppiumUtil.getText(driver,By.id(YLLConstantValue.home_tv_city));
             String home_weather_tv_weather = AppiumUtil.getText(driver,By.id(YLLConstantValue.home_weather_tv_weather));
             if(home_tv_city !=null || home_tv_city!= null){
-                Log.debug("当前城市是："  + home_tv_city + "  当前的天气是：" + home_weather_tv_weather);
+                Lo.debug("当前城市是："  + home_tv_city + "  当前的天气是：" + home_weather_tv_weather);
             }
         }
-
     }
 
     /**
@@ -128,7 +134,7 @@ public class YllHome {
      *  景点门票  列表界面的操作
      */
     @Test
-    public static void ticket(){
+    public static void initTicket(){
         /**
          * 搜索框
          */
@@ -136,21 +142,63 @@ public class YllHome {
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_ticket_et_search));
         AppiumUtil.click(driver,By.id(YLLConstantValue.id_back));
         /**
-         * 右上角的定位城市
+         * 右上角的定位城市 。
+         * 1.先获取总的个数，然后随机点击其中一个
+         * 2.必须先进入对应界面，才能获取到控件的总共个数。不然会全部都是 0 ！！！
          */
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_ticket_city_click));
-        AppiumUtil.click(driver,By.id(YLLConstantValue.location_dw_gridview_tv),TestUtils.randomTen());
+        int size = AppiumUtil.getTotal(driver,By.id(YLLConstantValue.location_dw_gridview_tv));
+        AppiumUtil.click(driver,By.id(YLLConstantValue.location_dw_gridview_tv),TestUtils.random(size));
+        /**
+         * 三个列表
+         */
+        for (int i = 0; i < 2; i++) {
+            AppiumUtil.click(driver, By.id(YLLConstantValue.home_ticket_tv_collection));
+            clickListItem();
+            AppiumUtil.click(driver, By.id(YLLConstantValue.home_ticket_tv_distance));
+            clickListItem();
+            AppiumUtil.click(driver, By.id(YLLConstantValue.home_ticket_tv_moren));
+            clickListItem();
+        }
 
-
+        /**
+         * 点击返回到 主界面
+         */
+        AppiumUtil.click(driver,By.id(YLLConstantValue.id_back));
     }
 
-    @AfterTest
-    public static void after(){
-        /**
-         * 切换成系统输入法
+    /**
+     *  酒店 搜索，列表界面的操作
+     */
+    @Test
+    public static void initHotel(){
+        AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_hotel));
+
+        AppiumUtil.sendKeys(driver,By.xpath(YLLConstantValue.xpath_hotel_key_words),search_text[TestUtils.random(search_text.length)]);
+        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_hotel_start_search));
+
+        AppiumUtil.click(driver,By.xpath(YLLConstantValue.xpath_hotel_back));
+    }
+
+    /**
+         * 1.上下滑动列表
+         * 2.点击列表条目 ， 返回
          */
-        AppiumUtil.typeWriting(ConstantValue.DEVICE);  //切换手机系统 自己的输入法
-        Log.debug("测试结束，主动切换成系统输入法");
+    private static void clickListItem() {
+        for(int i = 0 ; i < 2; i++) {
+            TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 3);
+            TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 2);
+        }
+
+        int size2 = AppiumUtil.getTotal(driver,By.id(YLLConstantValue.home_ticket_tv_item_ticket_title));
+        for(int i = 0 ; i < size2; i++) {
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_ticket_tv_item_ticket_title),TestUtils.random(size2));
+            for(int j = 0 ; j < 2; j++) {
+                TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 3);
+                TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 3);
+            }
+        AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_iv_back));
+        }
     }
 
     /**
@@ -162,9 +210,8 @@ public class YllHome {
         AppiumUtil.click(driver,By.id(YLLConstantValue.search_search_content));
         TestUtils.testSleep(ConstantValue.ONE_SECOND);
         AppiumUtil.click(driver,By.id(YLLConstantValue.search_search_content));
-//        driver.findElement(By.id(YLLConstantValue.search_search_content)).sendKeys(message);
         AppiumUtil.sendKeys(driver,By.id(YLLConstantValue.search_search_content),message);
-        Log.debug(message);
+        Lo.debug(message);
         AppiumUtil.typeWriting(ConstantValue.DEVICE);  //切换手机系统 自己的输入法 . 1对应魅族
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
         //点击右下角的搜索，即ENTER键  ===输入拼音的时候，输入法会先确认内容，再进行搜索！！==

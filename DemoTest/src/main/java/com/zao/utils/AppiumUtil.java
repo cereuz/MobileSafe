@@ -34,9 +34,9 @@ public class AppiumUtil {
         try {
             before(driver);
             driver.findElement(by).click();
-            Log.error(by.toString() + " = 控件点击成功" );
+            Lo.debug(by.toString() + " = 控件点击成功" );
         } catch (NoSuchElementException e){
-            Log.error(by.toString() + " = 控件不存在或无法获取到" );
+            Lo.error(by.toString() + " = 控件不存在或无法获取到" );
         /* driver.findElement(by.id(by));
         driver.findElement(By.name(by));
         driver.findElement(By.className(by));
@@ -52,19 +52,23 @@ public class AppiumUtil {
      */
     public static void click(AppiumDriver<WebElement> driver,By by, int index) {
         WebElement targetEle = null;
+        int size = -1;
         try {
             before(driver);
             List<WebElement> byList = driver.findElements(by);
+            size = byList.size();
             targetEle = byList.get(index);
             targetEle.click();
-            Log.debug("正在点击列表控件，当前点击序号为 ：" + index);
-            } catch (NoSuchElementException e){
-                Log.error(targetEle.toString() + " = 当前点击序号为：" + index + " = 控件不存在或无法获取到" );
+            Lo.debug(by.toString() + " 正在点击列表控件，当前点击序号为 ：" + index + " 总共：" + size);
+        } catch (IndexOutOfBoundsException ioobe){
+                Lo.error( by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。"  + " 总共：" + size);
                 /* driver.findElement(by.id(by));
                 driver.findElement(By.name(by));
                 driver.findElement(By.className(by));
                 driver.findElement(By.xpath(by));*/
-           }
+        } catch (NoSuchElementException e){
+               Lo.error(by.toString() + " = 当前点击序号为：" + index + " = 控件不存在或无法获取到.。"  + " 总共：" + size);
+        }
     }
 
     public static void sendKeys(AppiumDriver<WebElement> driver,By by, String string) {
@@ -72,7 +76,7 @@ public class AppiumUtil {
             before(driver);
             driver.findElement(by).sendKeys(string);
         } catch (NoSuchElementException e){
-            Log.error(by.toString() + " = 控件不存在或无法获取到" );
+            Lo.error(by.toString() + " = 控件不存在或无法获取到" );
         /* driver.findElement(by.id(by));
         driver.findElement(By.name(by));
         driver.findElement(By.className(by));
@@ -92,7 +96,7 @@ public class AppiumUtil {
             String string=driver.findElement(by).getText();
             return string;
         } catch (NoSuchElementException e){
-            Log.error(by.toString() + " = 控件不存在或无法获取到" );
+            Lo.error(by.toString() + " = 控件不存在或无法获取到" );
             /* driver.findElement(by.id(by));
             driver.findElement(By.name(by));
             driver.findElement(By.className(by));
@@ -186,7 +190,7 @@ public class AppiumUtil {
             int number=lis.size();
             return number;
             } catch (NoSuchElementException e){
-                Log.error(by.toString() + " = 控件不存在或无法获取到" );
+                Lo.error(by.toString() + " = 控件不存在或无法获取到" );
                 /* driver.findElement(by.id(by));
                 driver.findElement(By.name(by));
                 driver.findElement(By.className(by));

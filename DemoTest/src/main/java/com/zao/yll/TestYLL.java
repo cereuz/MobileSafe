@@ -64,8 +64,8 @@ public class TestYLL {
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
 
         for(int i = 0 ; i < 3; i++) {
-            TestUtils.swipeToUp(driver, 3 * 1000, 3);
-            TestUtils.swipeToDown(driver, 3 * 1000, 3);
+            TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 3);
+            TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 3);
         }
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
 

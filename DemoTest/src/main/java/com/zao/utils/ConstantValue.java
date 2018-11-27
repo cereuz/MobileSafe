@@ -7,6 +7,8 @@ public class ConstantValue {
     public static long SIX_SECOND = 6000;
     public static long TEN_SECOND = 10 * 1000;
     public static long TWENTY_SECOND = 20 * 1000;
+
+    public static int SWIPE_DURING = 3 * 1000;
     /**
      * 机型区分
      *  1 ：魅族

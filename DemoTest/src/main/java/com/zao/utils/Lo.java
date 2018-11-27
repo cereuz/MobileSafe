@@ -8,7 +8,7 @@ import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
 
-public class Log {
+public class Lo {
     /**
      * 日志工具类，使用静态方法打印日志  无需每个类中定义日志对象
      * Logback对每个Logger对象做了缓存，每次调用LoggerFactory.getLogger(String name)时如果已存在则从缓存中获取不会生成新的对象;

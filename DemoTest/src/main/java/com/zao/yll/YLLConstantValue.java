@@ -98,6 +98,16 @@ public class YLLConstantValue {
     public static String home_ticket_et_search = "com.zjjyy.yilvyou:id/et_search";
     public static String home_ticket_city_click = "com.zjjyy.yilvyou:id/city_click";
 
+    public static String home_ticket_tv_item_ticket_title = "com.zjjyy.yilvyou:id/tv_item_ticket_title";
+
+
+    /**
+     *  三个列表
+     */
+    public static String home_ticket_tv_moren = "com.zjjyy.yilvyou:id/tv_moren";
+    public static String home_ticket_tv_collection = "com.zjjyy.yilvyou:id/tv_collection";
+    public static String home_ticket_tv_distance = "com.zjjyy.yilvyou:id/tv_distance";
+
 
 
 
@@ -109,4 +119,7 @@ public class YLLConstantValue {
     public static String home_ib_choice_hotel_more = "com.zjjyy.yilvyou:id/ib_choice_ticket_hotel";
 
     public static String xpath_hotel_back = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[1]";
+    public static String xpath_hotel_key_words = "//android.widget.EditText[@content-desc=\"关键字/位置/品牌/酒店名\"]";
+    public static String xpath_hotel_start_search = "//android.view.View[@content-desc=\"开始搜索\"]";
+
 }

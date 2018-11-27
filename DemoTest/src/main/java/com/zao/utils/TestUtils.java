@@ -1,7 +1,10 @@
 package com.zao.utils;
 
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.Test;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -36,20 +39,18 @@ public class TestUtils {
         capabilities.setCapability("resetKeyboard", "True"); //在关闭后重置设备的默认输入法
         capabilities.setCapability("noReset", noReset); //不需要再次安装
 
-        Log.debug("startAPPunLogin");
-
-//        AndroidDriver driver = null;
+        Lo.debug("startAPP");
+        Lo.info(capabilities.toString() +"== Init and Connect Device , start APP. SUCCESS ==");
         try {
             driver = new AndroidDriver(new URL(urlPort), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        Log.info("init and connect device , start APP. SUCCESS");
 
         TestUtils.testSleep(ConstantValue.TEN_SECOND);
         TestUtils.checkPermission(driver);
-        Log.info("check Permissions And Allow it , SUCCESS");
+        Lo.info("check Permissions And Allow it , SUCCESS");
         return driver;
     }
 
@@ -73,11 +74,17 @@ public class TestUtils {
      * @param num
      */
     public static void swipeToUp(AppiumDriver<WebElement> driver,int during, int num) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        for (int i = 0; i < num; i++) {
-            driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
-            testSleep(3 * 1000);
+        try {
+            AppiumUtil.before(driver);
+            int width = driver.manage().window().getSize().width;
+            int height = driver.manage().window().getSize().height;
+            Lo.debug("【swipeToUp】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            for (int i = 0; i < num; i++) {
+                driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, during);
+                testSleep(3 * 1000);
+            }
+        } catch (WebDriverException exception){
+            Lo.error("WebDriverException : 等待时间过长。操作失败");
         }
     }
 
@@ -89,13 +96,17 @@ public class TestUtils {
      * @param num
      */
     public static void swipeToDown(AppiumDriver<WebElement> driver,int during, int num) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        System.out.println(width);
-        System.out.println(height);
-        for (int i = 0; i < num; i++) {
-            driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, during);
-            testSleep(3 * 1000);
+        try {
+                AppiumUtil.before(driver);
+            int width = driver.manage().window().getSize().width;
+            int height = driver.manage().window().getSize().height;
+            Lo.debug("【swipeToDown】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            for (int i = 0; i < num; i++) {
+                driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, during);
+                testSleep(3 * 1000);
+            }
+        } catch (WebDriverException exception){
+            Lo.error("WebDriverException : 等待时间过长。操作失败");
         }
     }
 
@@ -107,11 +118,17 @@ public class TestUtils {
      * @param num
      */
     public static void swipeToLeft(AppiumDriver<WebElement> driver,int during, int num) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        for (int i = 0; i < num; i++) {
-            driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, during);
-            testSleep(3 * 1000);
+        try {
+            AppiumUtil.before(driver);
+            int width = driver.manage().window().getSize().width;
+            int height = driver.manage().window().getSize().height;
+            Lo.debug("【swipeToLeft】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            for (int i = 0; i < num; i++) {
+                driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, during);
+                testSleep(3 * 1000);
+            }
+        } catch (WebDriverException exception){
+            Lo.error("WebDriverException : 等待时间过长。操作失败");
         }
     }
 
@@ -123,11 +140,17 @@ public class TestUtils {
      * @param num
      */
     public static void swipeToRight(AppiumDriver<WebElement> driver, int during, int num) {
-        int width = driver.manage().window().getSize().width;
-        int height = driver.manage().window().getSize().height;
-        for (int i = 0; i < num; i++) {
-            driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);
-            testSleep(3 * 1000);
+        try {
+                AppiumUtil.before(driver);
+            int width = driver.manage().window().getSize().width;
+            int height = driver.manage().window().getSize().height;
+            Lo.debug("【swipeToRight】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            for (int i = 0; i < num; i++) {
+                driver.swipe(width / 4, height / 2, width * 3 / 4, height / 2, during);
+                testSleep(3 * 1000);
+            }
+        } catch (WebDriverException exception){
+            Lo.error("WebDriverException : 等待时间过长。操作失败");
         }
     }
 
@@ -161,7 +184,7 @@ public class TestUtils {
         try{
             runtime.exec(s);
         }catch(Exception e){
-            Log.debug("执行命令:"+s+"出错");
+            Lo.debug("执行命令:"+s+"出错");
         }
     }
 
@@ -170,7 +193,7 @@ public class TestUtils {
      */
     public static void uninstallAppiumInput(){
         driver.removeApp("io.appium.android.ime");
-        Log.debug("REMOVE  io.appium.android.ime");
+        Lo.debug("REMOVE  io.appium.android.ime");
     }
 
 
@@ -179,5 +202,18 @@ public class TestUtils {
      */
     public static int randomTen() {
         return (int) (Math.random() * 10);
+    }
+
+    /**
+     *  ×× 返回 0 到 10之间的整数
+     *  ×× 集合和数组都是从序号 0 开始取值。
+     */
+    public static int random(int i) {
+        return (int) (Math.random() * i);
+    }
+
+    @Test
+    public void test(){
+        System.out.println(TestUtils.random(8));
     }
 }
