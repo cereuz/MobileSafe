@@ -85,9 +85,9 @@ public class TestUtils {
             int width = size.width;
             Lo.info("【swipeToUp】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                new TouchAction(driver).longPress(PointOption.point(width / 2, 100))
-                        .moveTo(PointOption.point(width / 2, height - 100)).release()
-                        .perform();
+                new TouchAction(driver)
+                        .longPress(PointOption.point(width / 2, height - 300))
+                        .moveTo(PointOption.point(width / 2, 300)).release().perform();
                 testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
@@ -110,9 +110,9 @@ public class TestUtils {
             int width = size.width;
             Lo.info("【swipeToDown】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                new TouchAction(driver)
-                        .longPress(PointOption.point(width / 2, height - 100))
-                        .moveTo(PointOption.point(width / 2, 100)).release().perform();
+                new TouchAction(driver).longPress(PointOption.point(width / 2, 300))
+                        .moveTo(PointOption.point(width / 2, height - 300)).release()
+                        .perform();
                 testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
@@ -136,8 +136,8 @@ public class TestUtils {
             Lo.info("【swipeToLeft】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
                 new TouchAction(driver)
-                        .longPress(PointOption.point(width - 100, height / 2))
-                        .moveTo(PointOption.point(100, height / 2)).release().perform();
+                        .longPress(PointOption.point(width - 200, height / 2))
+                        .moveTo(PointOption.point(200, height / 2)).release().perform();
                 testSleep(ConstantValue.SWIPE_SLEEP);
             }
         } catch (WebDriverException exception){
@@ -160,8 +160,8 @@ public class TestUtils {
             int width = size.width;
             Lo.info("【swipeToRight】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
             for (int i = 0; i < num; i++) {
-                new TouchAction(driver).longPress(PointOption.point(100, height / 2))
-                        .moveTo(PointOption.point(width - 100, height / 2)).release()
+                new TouchAction(driver).longPress(PointOption.point(200, height / 2))
+                        .moveTo(PointOption.point(width - 200, height / 2)).release()
                         .perform();
                 testSleep(ConstantValue.SWIPE_SLEEP);
             }

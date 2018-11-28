@@ -1,0 +1,40 @@
+<project name="testNG" basedir="." >
+    <property name="lib.dir" value="libs" />
+    <path id="test.classpath" >
+         <!-- adding the saxon jar to your classpath -->
+        <fileset dir="${lib.dir}" includes="*.jar" />
+    </path>
+<!--    <target name="transform" >
+        &lt;!&ndash; 需要根据自己的环境进行配置（将E:/workspace/testNG/替换成你自己project的目录） &ndash;&gt;
+        <xslt in="E:\java\java\GitHub\MobileSafe\DemoTest\test-output\testng-results.xml" style="E:\java\java\GitHub\MobileSafe\DemoTest\test-output\testng-results.xsl"
+              out="E:\java\java\GitHub\MobileSafe\DemoTest\test-output\index1.html" >
+             &lt;!&ndash; 需要根据自己的环境进行配置（将E:/workspace/testNG/替换成你自己project的目录） &ndash;&gt;
+            <param name="testNgXslt.outputDir" expression="E:\java\java\GitHub\MobileSafe\DemoTest\test-output\" />
+            <classpath refid="test.classpath" />
+        </xslt>
+    </target>-->
+<!--    <testng  classpathref="runpath"  outputDir="test-output"
+        haltonfailure="true"
+        useDefaultListeners="false"
+        listeners="org.uncommons.reportng.HTMLReporter,org.testng.reporters.FailedReporter" >
+        <xmlfileset dir="${basedir}" includes="Parametertestng.xml"/>
+        <jvmarg value="-Dfile.encoding=UTF-8" />
+        <sysproperty key="org.uncommons.reportng.title" value="AutoMation TestReport" />
+    </testng>-->
+
+<!--    &lt;!&ndash;指定testNg需要的Jar包&ndash;&gt;
+    <taskdef resource="testngtasks" classpath="${lib.dir}/testng-6.2.jar"/>
+
+    <target name="run_reportng_tests" depends="compile" description="执行TestNg测试用例">
+        <testng classpathref="compile.path"
+            outputDir="${output.dir}"
+            haltOnfailure="true"
+            useDefaultListeners="false"
+            listeners="org.uncommons.reportng.HTMLReporter,org.testng.reporters.FailedReporter" >
+            &lt;!&ndash;设置TestNg所包含的xml文件&ndash;&gt;
+            <xmlfileset dir="${basedir}" includes="testng.xml" />
+            &lt;!&ndash;设置报告Title名称 &ndash;&gt;
+            <sysproperty key="org.uncommons.reportng.title" value="自动化测试报告" />
+        </testng>
+    </target>-->
+</project>

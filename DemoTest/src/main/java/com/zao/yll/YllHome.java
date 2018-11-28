@@ -118,6 +118,33 @@ public class YllHome {
      */
     @Test
     public static void main(){
+        TestUtils.swipeToDown(driver,ConstantValue.SWIPE_DURING,1);
+        TestUtils.testSleep(ConstantValue.THREE_SECOND);
+
+        TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,1);
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(3));
+        swipeItemPage(By.id(YLLConstantValue.id_index_iv_back));
+
+        TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,1);
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_layout_collection));
+        if(AppiumUtil.clickB(driver, By.id(YLLConstantValue.home_tv_ticket_title), TestUtils.random(4))){
+            swipeItemPage(By.id(YLLConstantValue.id_index_iv_back));
+        }
+
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_layout_default));
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(4));
+        swipeItemPage(By.id(YLLConstantValue.id_index_iv_back));
+
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_layout_distance));
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(4));
+        swipeItemPage(By.id(YLLConstantValue.id_index_iv_back));
+
+        TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,3);
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(6));
+        swipeItemPage(By.xpath(YLLConstantValue.xpath_hotel_back));
+
+
+/*
         for (int i=0; i < 2; i++) {
             AppiumUtil.click(driver,By.id(YLLConstantValue.home_iv_msg));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_local_rightImg));
@@ -128,6 +155,20 @@ public class YllHome {
             AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_voucher));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_local_rightImg));
         }
+*/
+
+
+    }
+
+    /**
+     * 景点条目的详情界面的操作。操作结束之后返回。
+     */
+    private static void swipeItemPage(By by) {
+        for (int j = 0; j < 1; j++) {
+            TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 3);
+            TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 3);
+        }
+        AppiumUtil.click(driver, by);
     }
 
     /**

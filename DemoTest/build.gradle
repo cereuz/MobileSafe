@@ -17,6 +17,8 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.3'
 
     implementation 'org.testng:testng:7.0.0-beta1'
+    implementation 'org.uncommons:reportng:1.1.4'
+    implementation 'com.google.inject:guice:4.0'
 }
 
 sourceCompatibility = "1.8"

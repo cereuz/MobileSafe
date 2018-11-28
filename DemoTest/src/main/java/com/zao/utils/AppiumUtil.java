@@ -71,6 +71,37 @@ public class AppiumUtil {
         }
     }
 
+
+    /**
+     * 点击相同控件中的指定序号的控件
+     * @param driver
+     * @param by
+     * @param index
+     */
+    public static Boolean clickB(AppiumDriver<WebElement> driver,By by, int index) {
+        WebElement targetEle = null;
+        int size = -1;
+        try {
+            before(driver);
+            List<WebElement> byList = driver.findElements(by);
+            size = byList.size();
+            targetEle = byList.get(index);
+            targetEle.click();
+            Lo.info(by.toString() + " 正在点击列表控件，当前点击序号为 ：" + index + " 总共：" + size);
+            return true;
+        } catch (IndexOutOfBoundsException ioobe){
+            Lo.error( by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。"  + " 总共：" + size);
+            return false;
+                /* driver.findElement(by.id(by));
+                driver.findElement(By.name(by));
+                driver.findElement(By.className(by));
+                driver.findElement(By.xpath(by));*/
+        } catch (NoSuchElementException e){
+            Lo.error(by.toString() + " = 当前点击序号为：" + index + " = 控件不存在或无法获取到.。"  + " 总共：" + size);
+            return false;
+        }
+    }
+
     public static void sendKeys(AppiumDriver<WebElement> driver,By by, String string) {
         try {
             before(driver);
