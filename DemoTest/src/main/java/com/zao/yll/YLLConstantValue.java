@@ -6,7 +6,9 @@ public class YLLConstantValue {
      * 整体操作
      */
     public static String DEVICE_NAME_MEIZU = "meizu-pro-6s";
-    public static String AUTOMATION_NAME = "Appium";
+    public static String DEVICE_NAME_HUAWEI = "huawei-LDN-TL00";
+    public static String AUTOMATION_NAME_APPIUM = "Appium";
+    public static String AUTOMATION_NAME_UIAUTOMATOR2 = "UiAutomator2";
     public static String PLATFORM_NAME_ANDROID = "Android";
     public static String PLATFORM_VERSION_711 = "7.1.1";
     public static String PLATFORM_VERSION_800 = "8.0.0";
@@ -15,6 +17,7 @@ public class YLLConstantValue {
     public static String APP_ACTIVITY_YLL = "com.zjjyy.yilvyou.mylibrary.activity.WelcomeActivity";
     public static String URL_PORT_4723 = "http://127.0.0.1:4723/wd/hub";
     public static boolean NO_RESET_TRUE = true;
+    public static boolean NO_RESET_FALSE = false;
 
 
     public static String id_index_homepage = "com.zjjyy.yilvyou:id/homepage";
@@ -24,7 +27,7 @@ public class YLLConstantValue {
     public static String id_index_profile = "com.zjjyy.yilvyou:id/profit";
     public static String id_index_iv_back = "com.zjjyy.yilvyou:id/iv_back";
     public static String id_back = "com.zjjyy.yilvyou:id/back";
-
+    public static String id_back_click = "com.zjjyy.yilvyou:id/back_click";
 
 
 
@@ -118,7 +121,8 @@ public class YLLConstantValue {
     public static String home_rv_choice_hotel = "com.zjjyy.yilvyou:id/rv_choice_hotel";
     public static String home_ib_choice_hotel_more = "com.zjjyy.yilvyou:id/ib_choice_ticket_hotel";
 
-    public static String xpath_hotel_back = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[1]";
+    public static String xpath_hotel_back_1 = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[1]";
+    public static String xpath_hotel_back_9 = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[9]";
     public static String xpath_hotel_key_words = "//android.widget.EditText[@content-desc=\"关键字/位置/品牌/酒店名\"]";
     public static String xpath_hotel_start_search = "//android.view.View[@content-desc=\"开始搜索\"]";
 

@@ -52,7 +52,7 @@ public class TestYLL {
     @Test
     public static void startAPPunLogin(){
 
-        AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,YLLConstantValue.AUTOMATION_NAME,
+        AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,YLLConstantValue.AUTOMATION_NAME_APPIUM,
                                           YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION_711,
                                           YLLConstantValue.APP_PACKAGE_YLL, YLLConstantValue.APP_ACTIVITY_YLL,
                                           YLLConstantValue.NO_RESET_TRUE,YLLConstantValue.URL_PORT_4723);

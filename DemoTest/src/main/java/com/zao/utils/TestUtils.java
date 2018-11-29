@@ -1,5 +1,8 @@
 package com.zao.utils;
 
+import com.zao.yll.YLLConstantValue;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -178,8 +181,9 @@ public class TestUtils {
     public static void checkPermission(AndroidDriver driver) {
         try{
             while (isExist){
-                WebElement elementPermission = driver.findElementById("com.android.packageinstaller:id/permission_allow_button");
+                WebElement elementPermission = driver.findElementById(ConstantValue.id_permission_allow_button);
                 if (elementPermission.isDisplayed()){
+                    Lo.debug("同意权限 ：" + AppiumUtil.getText(driver, By.id(ConstantValue.id_permission_message)));
                     elementPermission.click();
                     TestUtils.testSleep(ConstantValue.TWO_SECOND);
                 } else {
