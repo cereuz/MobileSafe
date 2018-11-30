@@ -1,9 +1,11 @@
 package com.zao.yll;
 
 import com.zao.utils.ConstantValue;
+import com.zao.utils.Lo;
 import com.zao.utils.TestUtils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
 
@@ -20,7 +22,14 @@ public class TestYLL {
         /**
          * 未登录状态下启动APP
          */
-        startAPPunLogin();
+//        startAPPunLogin();
+        try{
+            new YllHomeHuawei().start();
+            new YllHomeMeizu().start();
+        } catch (WebDriverException e){
+            Lo.error("WebDriverException ：启动APP失败" + Thread.currentThread().getName());
+        }
+
     }
 
     /**
@@ -52,7 +61,7 @@ public class TestYLL {
     @Test
     public static void startAPPunLogin(){
 
-        AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,YLLConstantValue.AUTOMATION_NAME_APPIUM,
+        AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,ConstantValue.UDID_MEIZU,YLLConstantValue.AUTOMATION_NAME_APPIUM,
                                           YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION_711,
                                           YLLConstantValue.APP_PACKAGE_YLL, YLLConstantValue.APP_ACTIVITY_YLL,
                                           YLLConstantValue.NO_RESET_TRUE,YLLConstantValue.URL_PORT_4723);

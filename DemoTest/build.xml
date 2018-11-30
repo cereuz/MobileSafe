@@ -1,5 +1,6 @@
 <project name="testNG" basedir="." >
     <property name="lib.dir" value="libs" />
+    <property name="base.dir" value="E:\\java\\java\\GitHub\\MobileSafe\\DemoTest\\out"/><!--项目根目录-->
     <path id="test.classpath" >
          <!-- adding the saxon jar to your classpath -->
         <fileset dir="${lib.dir}" includes="*.jar" />
@@ -22,19 +23,29 @@
         <sysproperty key="org.uncommons.reportng.title" value="AutoMation TestReport" />
     </testng>-->
 
-<!--    &lt;!&ndash;指定testNg需要的Jar包&ndash;&gt;
-    <taskdef resource="testngtasks" classpath="${lib.dir}/testng-6.2.jar"/>
-
-    <target name="run_reportng_tests" depends="compile" description="执行TestNg测试用例">
+    <!--指定testNg需要的Jar包-->
+    <!--<taskdef resource="testngtasks" classpath="${lib.dir}/testng-6.2.jar"/>-->
+<!--    <target name="run_tests" depends="implementation" description="执行TestNg测试用例">
         <testng classpathref="compile.path"
             outputDir="${output.dir}"
             haltOnfailure="true"
             useDefaultListeners="false"
             listeners="org.uncommons.reportng.HTMLReporter,org.testng.reporters.FailedReporter" >
-            &lt;!&ndash;设置TestNg所包含的xml文件&ndash;&gt;
+            &lt;!&ndash;设置TestNg所包含的xml文件
             <xmlfileset dir="${basedir}" includes="testng.xml" />
-            &lt;!&ndash;设置报告Title名称 &ndash;&gt;
+            设置报告Title名称 &ndash;&gt;
             <sysproperty key="org.uncommons.reportng.title" value="自动化测试报告" />
         </testng>
     </target>-->
+
+    <target name="runtest" depends="compile">
+        <!--运行testng文件-->
+        <!-- 在target里面新建一个testng标签，里面需要设置的属性有：outputdir – 测试结果输出目录；classpathref – 那些自动化测试代码的目标路径，通常就是编译完成以后的那个目标路径，例如xxx/bin；delegateCommandSystemProperties – 接受传递命令行参数作为系统变量，这个设置为true可以在调用Ant的时候通过 -Dfoo=value 把参数传递给TestNG；里面还有一个xmlfileset节点，这个节点就是指定testng.xml文件的目录以及具体文件。 -->
+        <testng outputdir="${base.dir}/test-output"
+            classpathref="classes"
+            delegateCommandSystemProperties="true">
+            <xmlfileset dir="${base.dir}" includes="testNG.xml"/> <!--在指定路径下，找文件名由testng.file-->
+        </testng> <!--定义的testng.xml文件-->
+    </target>
+
 </project>

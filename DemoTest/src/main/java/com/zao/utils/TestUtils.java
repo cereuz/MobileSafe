@@ -32,9 +32,10 @@ public class TestUtils {
      * @param noReset
      * @return
      */
-    public static AndroidDriver initDevice(String deviceName, String automationName, String platformName, String platformVersion, String appPackage, String appActivity, boolean noReset,String urlPort) {
+    public static AndroidDriver initDevice(String deviceName,String udid ,String automationName, String platformName, String platformVersion, String appPackage, String appActivity, boolean noReset,String urlPort) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", deviceName);
+        capabilities.setCapability("udid", udid);
         capabilities.setCapability("automationName", automationName);
         capabilities.setCapability("platformName", platformName);
         capabilities.setCapability("platformVersion", platformVersion);

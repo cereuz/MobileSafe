@@ -20,8 +20,8 @@ import io.appium.java_client.android.AndroidDriver;
 public class AppiumUtil {
 
     public static void before(AppiumDriver<WebElement> driver) {
-       //找到元素立即执行，找不到一直等待 6 秒，只要执行一次
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       //找到元素立即执行，找不到一直等待 15 秒，只要执行一次
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         try {
             Thread.sleep(ConstantValue.ONE_SECOND);
         } catch (InterruptedException e) {
@@ -42,6 +42,24 @@ public class AppiumUtil {
         driver.findElement(By.xpath(by));*/
         }
     }
+
+    public static Boolean clickB(AppiumDriver<WebElement> driver,By by) {
+        try {
+            before(driver);
+            driver.findElement(by).click();
+            Lo.info(by.toString() + " = 控件点击成功" );
+            return true;
+        } catch (NoSuchElementException e){
+            Lo.error(by.toString() + " = 控件不存在或无法获取到" );
+            return false;
+        /* driver.findElement(by.id(by));
+        driver.findElement(By.name(by));
+        driver.findElement(By.className(by));
+        driver.findElement(By.xpath(by));*/
+        }
+    }
+
+
 
     /**
      * 点击相同控件中的指定序号的控件
@@ -91,7 +109,7 @@ public class AppiumUtil {
         } catch (IndexOutOfBoundsException ioobe){
             Lo.error( by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。"  + " 总共：" + size);
             return false;
-                /* driver.findElement(by.id(by));
+/*                 driver.findElement(by.id(by));
                 driver.findElement(By.name(by));
                 driver.findElement(By.className(by));
                 driver.findElement(By.xpath(by));*/
@@ -263,16 +281,42 @@ public class AppiumUtil {
             return true;
         }
     }
-    public static boolean Exist(AppiumDriver<WebElement> driver,By by){
+
+    public static boolean isExist(AppiumDriver<WebElement> driver,By by){
         try{
+            before(driver);
             driver.findElement(by);
+            Lo.info(by.toString() + " = 控件存在且已获取到" );
             return true;
-
         }catch(Exception e){
-
+            Lo.error(by.toString() + " = 控件不存在或无法获取到" );
             return false;
         }
     }
+
+    public static boolean isExistIndex(AppiumDriver<WebElement> driver,By by, int index){
+        WebElement targetEle = null;
+        int size = -1;
+        try {
+                before(driver);
+                List<WebElement> byList = driver.findElements(by);
+                size = byList.size();
+                targetEle = byList.get(index);
+                if(targetEle != null) {
+                    Lo.info(targetEle.toString() + " 要查找的控件存在，当前点击序号为 ：" + index + " 总共：" + size);
+                } else {
+                    Lo.info(targetEle.toString() + " 要查找的控件不存在，当前点击序号为 ：" + index + " 总共：" + size);
+                }
+                return true;
+             } catch (IndexOutOfBoundsException ioobe){
+                Lo.error(by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。" + " 总共：" + size);
+                return false;
+             } catch(Exception e){
+                Lo.error(by.toString() + " = 控件不存在或无法获取到" );
+                return false;
+        }
+    }
+
     /***
      * 断言、存在某元素返回正确
      * @param driver

@@ -8,23 +8,29 @@ import com.zao.utils.TestUtils;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 
-public class YllHomeHuawei {
+public class YllHomeHuawei extends Thread{
 
     public static String[] search_text = {"温州","wuxue","武汉","南京","wuxi","上海","杭州"};
     /**
      * 启动APP ， 初始化 driver对象
      */
-    static AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_HUAWEI,YLLConstantValue.AUTOMATION_NAME_UIAUTOMATOR2,
+    static AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_HUAWEI,ConstantValue.UDID_HUAWEI,YLLConstantValue.AUTOMATION_NAME_UIAUTOMATOR2,
             YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION_800,
             YLLConstantValue.APP_PACKAGE_YLL, YLLConstantValue.APP_ACTIVITY_YLL,
             YLLConstantValue.NO_RESET_FALSE,YLLConstantValue.URL_PORT_4723);
 
+    public static String getCurThread(){
+        return Thread.currentThread().getName();
+    }
+
     @BeforeTest
+    @Parameters({ "test-name" })
     public static void before(){
         TestUtils.excuteAdbShell(ConstantValue.APPIUM_INPUT);
         Lo.debug("测试开始之前，主动切换成Appium输入法");
@@ -32,8 +38,10 @@ public class YllHomeHuawei {
         /**
          * 刷新首页数据
          */
-        TestUtils.swipeToDown(driver,ConstantValue.SWIPE_DURING,1);
-        TestUtils.testSleep(ConstantValue.THREE_SECOND);
+        for (int i = 0; i < 2; i++) {
+            TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 1);
+            TestUtils.testSleep(ConstantValue.THREE_SECOND);
+        }
     }
 
     @AfterTest
@@ -122,6 +130,23 @@ public class YllHomeHuawei {
      */
     @Test
     public static void main(){
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_iv_msg));
+        if(!AppiumUtil.clickB(driver,By.id(YLLConstantValue.id_index_local_rightImg))){
+            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_profile));
+            AppiumUtil.click(driver,By.id(YLLConstantValue.profile_ib_setting));
+            AppiumUtil.click(driver,By.id(YLLConstantValue.profile_LogOff));
+            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_homepage));
+        }
+
+        for (int i=0; i < 2; i++) {
+            AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_ticket));
+            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_iv_back));
+            AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_hotel));
+            AppiumUtil.click(driver,By.xpath(YLLConstantValue.xpath_huawei_hotel_back_1));
+            AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_voucher));
+            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_local_rightImg));
+        }
+
 
         TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,1);
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(3));
@@ -150,18 +175,6 @@ public class YllHomeHuawei {
         }
 
         TestUtils.swipeToDown(driver,ConstantValue.SWIPE_DURING,5);//滑动界面，返回到首页最上边
-
-        for (int i=0; i < 2; i++) {
-            AppiumUtil.click(driver,By.id(YLLConstantValue.home_iv_msg));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_local_rightImg));
-            AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_ticket));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_iv_back));
-            AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_hotel));
-            AppiumUtil.click(driver,By.xpath(YLLConstantValue.xpath_hotel_back_1));
-            AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_voucher));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_local_rightImg));
-        }
-
 
     }
 
@@ -221,11 +234,11 @@ public class YllHomeHuawei {
     public static void initHotel(){
         AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_hotel));
 
-        AppiumUtil.sendKeys(driver,By.xpath(YLLConstantValue.xpath_hotel_key_words),search_text[TestUtils.random(search_text.length)]);
-        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_hotel_start_search));
+        AppiumUtil.sendKeys(driver,By.xpath(YLLConstantValue.xpath_huawei_hotel_key_words),search_text[TestUtils.random(search_text.length)]);
+        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_huawei_hotel_start_search));
 
         AppiumUtil.click(driver, By.id(YLLConstantValue.id_back));  //返回酒店搜索页面
-        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_hotel_back_1));  //返回首页
+        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_huawei_hotel_back_1));  //返回首页
     }
 
     /**

@@ -16,6 +16,7 @@ public class YLLConstantValue {
     public static String APP_PACKAGE_YLL = "com.zjjyy.yilvyou";
     public static String APP_ACTIVITY_YLL = "com.zjjyy.yilvyou.mylibrary.activity.WelcomeActivity";
     public static String URL_PORT_4723 = "http://127.0.0.1:4723/wd/hub";
+    public static String URL_PORT_4724 = "http://127.0.0.1:4724/wd/hub";
     public static boolean NO_RESET_TRUE = true;
     public static boolean NO_RESET_FALSE = false;
 
@@ -121,9 +122,27 @@ public class YLLConstantValue {
     public static String home_rv_choice_hotel = "com.zjjyy.yilvyou:id/rv_choice_hotel";
     public static String home_ib_choice_hotel_more = "com.zjjyy.yilvyou:id/ib_choice_ticket_hotel";
 
-    public static String xpath_hotel_back_1 = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[1]";
+    public static String xpath_meizu_hotel_back_1 = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[1]";
+    public static String xpath_meizu_hotel_key_words = "//android.widget.EditText[@content-desc=\"关键字/位置/品牌/酒店名\"]";
+    public static String xpath_meizu_hotel_start_search = "//android.view.View[@content-desc=\"开始搜索\"]";
     public static String xpath_hotel_back_9 = "//android.webkit.WebView[@content-desc=\"易旅游\"]/android.view.View[9]";
-    public static String xpath_hotel_key_words = "//android.widget.EditText[@content-desc=\"关键字/位置/品牌/酒店名\"]";
-    public static String xpath_hotel_start_search = "//android.view.View[@content-desc=\"开始搜索\"]";
 
+    public static String xpath_huawei_hotel_back_1 = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[1]";
+    public static String xpath_huawei_hotel_key_words = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[5]/android.widget.EditText";
+    public static String xpath_huawei_hotel_start_search = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[7]";
+
+
+    /**
+     * ************************************个人中心****************************************************
+     *
+     */
+    public static String profile_ib_message = "com.zjjyy.yilvyou:id/ib_message";
+    public static String profile_ib_setting = "com.zjjyy.yilvyou:id/ib_setting";
+
+    public static String profile_LogOff = "com.zjjyy.yilvyou:id/LogOff";
+    public static String profile_tv_user_name = "com.zjjyy.yilvyou:id/tv_user_name";
+    public static String profile_tv_user_phone_num = "com.zjjyy.yilvyou:id/tv_user_phone_num";
+    public static String profile_tv_balence = "com.zjjyy.yilvyou:id/tv_balence";
+    public static String profile_tv_return_money = "com.zjjyy.yilvyou:id/tv_return_monty";
+    public static String profile_tv_discount_coupon = "com.zjjyy.yilvyou:id/tv_discount_coupon";
 }

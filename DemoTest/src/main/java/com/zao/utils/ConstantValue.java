@@ -17,6 +17,9 @@ public class ConstantValue {
      */
     public static int DEVICE = 1;
 
+    public static String UDID_HUAWEI = "8RYBB18307505264";
+    public static String UDID_MEIZU = "80SQBDQF2237K";
+
     /**
      * 输入法区分
      */
