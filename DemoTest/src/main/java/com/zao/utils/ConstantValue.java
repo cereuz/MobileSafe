@@ -18,6 +18,7 @@ public class ConstantValue {
     public static int DEVICE = 1;
 
     public static String UDID_HUAWEI = "8RYBB18307505264";
+    public static String UDID_HONOR = "CYSBBBE730206768";
     public static String UDID_MEIZU = "80SQBDQF2237K";
 
     /**
@@ -29,7 +30,18 @@ public class ConstantValue {
     public static String HUAWEI_INPUT = "adb shell ime set com.baidu.input_huawei/.ImeService";
     public static String MEIZU_INPUT = "adb shell ime set com.meizu.flyme.input/com.meizu.input.MzInputService";
 
+    public static String HONOR_BACK = "adb shell input keyevent 66";
+
+
     public static String id_permission_message = "com.android.packageinstaller:id/permission_message";
     public static String id_permission_allow_button = "com.android.packageinstaller:id/permission_allow_button";
+
+    public static String id_permission_message_honor_51 = "com.huawei.systemmanager:id/tv_hold_dialog_warning_message";
+    public static String id_permission_allow_button_honor_51 = "com.huawei.systemmanager:id/btn_allow";
+    public static String id_permission_hold_checkbox = "com.huawei.systemmanager:id/hold_checkbox";
+
+
+
+
 
 }

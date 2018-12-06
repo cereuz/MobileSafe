@@ -1,7 +1,5 @@
 package com.zao.utils;
 
-import com.zao.yll.YLLConstantValue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriverException;
@@ -42,8 +40,8 @@ public class TestUtils {
 //        capabilities.setCapability("platformVersion", "5.1");
         capabilities.setCapability("appPackage", appPackage);
         capabilities.setCapability("appActivity", appActivity);
-        capabilities.setCapability("unicodeKeyboard", "True"); //Appium版本1.3.3以上，解决无法输入中文问题  使用unicode编码
-        capabilities.setCapability("resetKeyboard", "True"); //在关闭后重置设备的默认输入法
+        capabilities.setCapability("unicodeKeyboard", "true"); //Appium版本1.3.3以上，解决无法输入中文问题  使用unicode编码
+        capabilities.setCapability("resetKeyboard", "true"); //在关闭后重置设备的默认输入法
         capabilities.setCapability("noReset", noReset); //不需要再次安装
 
         Lo.debug("startAPP");
@@ -59,6 +57,7 @@ public class TestUtils {
         TestUtils.testSleep(ConstantValue.TEN_SECOND);
         TestUtils.checkPermission(driver);
         Lo.info("check Permissions And Allow it , SUCCESS");
+        TestUtils.testSleep(ConstantValue.TWO_SECOND);
         return driver;
     }
 
@@ -92,10 +91,40 @@ public class TestUtils {
                 new TouchAction(driver)
                         .longPress(PointOption.point(width / 2, height - 300))
                         .moveTo(PointOption.point(width / 2, 300)).release().perform();
-                testSleep(ConstantValue.SWIPE_SLEEP);
+                testSleep(during);
             }
         } catch (WebDriverException exception){
-            Lo.error("WebDriverException : 等待时间过长。操作失败");
+            Lo.error("WebDriverException : 滑动屏幕--等待时间过长。操作失败");
+        }
+    }
+
+
+    /**
+     * 上滑到屏幕指定比例的位置
+     * 注意：安卓的屏幕坐标原点是屏幕的左上角。
+     * @param driver   驱动
+     * @param during   停顿时间
+     * @param num      重复操作的次数
+     * @param divide   将屏幕高度切割的份数
+     * @param to       滑动屏幕到对应份数的位置
+     */
+    public static void swipeToUp(AppiumDriver<WebElement> driver,int during, int num,int divide,int to) {
+        try {
+            AppiumUtil.before(driver);
+            Dimension size = driver.manage().window().getSize();
+            int height = size.height;
+            int width = size.width;
+            int yoff = height / divide * to;
+            Lo.info("【swipeToUp】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            for (int i = 0; i < num; i++) {
+                new TouchAction(driver)
+                        .longPress(PointOption.point(width / 2, height - 300))
+                        .moveTo(PointOption.point(width / 2, yoff)).release().perform();
+                testSleep(during);
+                Lo.debug(yoff + "=" + (height - 300) + "=" + yoff);
+            }
+        } catch (WebDriverException exception){
+            Lo.error("WebDriverException : 滑动屏幕--等待时间过长。操作失败");
         }
     }
 
@@ -117,10 +146,39 @@ public class TestUtils {
                 new TouchAction(driver).longPress(PointOption.point(width / 2, 300))
                         .moveTo(PointOption.point(width / 2, height - 300)).release()
                         .perform();
-                testSleep(ConstantValue.SWIPE_SLEEP);
+                testSleep(during);
             }
         } catch (WebDriverException exception){
-            Lo.error("WebDriverException : 等待时间过长。操作失败");
+            Lo.error("WebDriverException : 滑动屏幕--等待时间过长。操作失败");
+        }
+    }
+
+
+    /**
+     * 向下滑到屏幕指定比例的位置
+     * 注意：安卓的屏幕坐标原点是屏幕的左上角。
+     * @param driver   驱动
+     * @param during   停顿时间
+     * @param num      重复操作的次数
+     * @param divide   将屏幕高度切割的份数
+     * @param to       滑动屏幕到对应份数的位置
+     */
+    public static void swipeToDown(AppiumDriver<WebElement> driver,int during, int num,int divide,int to) {
+        try {
+            AppiumUtil.before(driver);
+            Dimension size = driver.manage().window().getSize();
+            int height = size.height;
+            int width = size.width;
+            int yoff = height / divide * to;
+            Lo.info("【swipeToDown】 屏幕尺寸：" + "宽=" + width + "，高=" + height);
+            for (int i = 0; i < num; i++) {
+                new TouchAction(driver).longPress(PointOption.point(width / 2, 300))
+                        .moveTo(PointOption.point(width / 2, yoff)).release()
+                        .perform();
+                testSleep(during);
+            }
+        } catch (WebDriverException exception){
+            Lo.error("WebDriverException : 滑动屏幕--等待时间过长。操作失败");
         }
     }
 
@@ -142,10 +200,10 @@ public class TestUtils {
                 new TouchAction(driver)
                         .longPress(PointOption.point(width - 200, height / 2))
                         .moveTo(PointOption.point(200, height / 2)).release().perform();
-                testSleep(ConstantValue.SWIPE_SLEEP);
+                testSleep(during);
             }
         } catch (WebDriverException exception){
-            Lo.error("WebDriverException : 等待时间过长。操作失败");
+            Lo.error("WebDriverException : 滑动屏幕--等待时间过长。操作失败");
         }
     }
 
@@ -167,10 +225,10 @@ public class TestUtils {
                 new TouchAction(driver).longPress(PointOption.point(200, height / 2))
                         .moveTo(PointOption.point(width - 200, height / 2)).release()
                         .perform();
-                testSleep(ConstantValue.SWIPE_SLEEP);
+                testSleep(during);
             }
         } catch (WebDriverException exception){
-            Lo.error("WebDriverException : 等待时间过长。操作失败");
+            Lo.error("WebDriverException : 滑动屏幕--等待时间过长。操作失败");
         }
     }
 

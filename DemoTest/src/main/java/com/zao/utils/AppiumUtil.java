@@ -50,7 +50,7 @@ public class AppiumUtil {
             Lo.info(by.toString() + " = 控件点击成功" );
             return true;
         } catch (NoSuchElementException e){
-            Lo.error(by.toString() + " = 控件不存在或无法获取到" );
+            Lo.debug(by.toString() + " = 控件不存在或无法获取到" );
             return false;
         /* driver.findElement(by.id(by));
         driver.findElement(By.name(by));
@@ -107,14 +107,14 @@ public class AppiumUtil {
             Lo.info(by.toString() + " 正在点击列表控件，当前点击序号为 ：" + index + " 总共：" + size);
             return true;
         } catch (IndexOutOfBoundsException ioobe){
-            Lo.error( by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。"  + " 总共：" + size);
+            Lo.debug( by.toString() + " 当前点击序号为：" + index + " = 控件不存在或无法获取到。"  + " 总共：" + size);
             return false;
 /*                 driver.findElement(by.id(by));
                 driver.findElement(By.name(by));
                 driver.findElement(By.className(by));
                 driver.findElement(By.xpath(by));*/
         } catch (NoSuchElementException e){
-            Lo.error(by.toString() + " = 当前点击序号为：" + index + " = 控件不存在或无法获取到.。"  + " 总共：" + size);
+            Lo.debug(by.toString() + " = 当前点击序号为：" + index + " = 控件不存在或无法获取到.。"  + " 总共：" + size);
             return false;
         }
     }

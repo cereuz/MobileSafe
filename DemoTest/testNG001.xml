@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="test-xml" parallel="tests">
-    <test name="yllHomeMeizu">
+<suite name="test-xml001" parallel="tests">
+    <test name="yllHomeMeizu001">
         <groups>
             <run>
                 <include name="test1" />
@@ -14,7 +14,7 @@
         </classes>
     </test>
 
-    <test name="yllHomeMeizu000">
+    <test name="yllHomeMeizu0011">
         <groups>
             <run>
                 <include name="test1" />
@@ -26,12 +26,4 @@
             <class name="com.zao.yll.YllHomeMeizu"/>
         </classes>
     </test>
-
-    <suite-files >
-        <!--模块1-->
-        <suite-file path="testNG001.xml"></suite-file>
-        <!--模块2-->
-        <suite-file path="testNG002.xml"></suite-file>
-    </suite-files>
-
 </suite>

@@ -7,6 +7,7 @@ public class YLLConstantValue {
      */
     public static String DEVICE_NAME_MEIZU = "meizu-pro-6s";
     public static String DEVICE_NAME_HUAWEI = "huawei-LDN-TL00";
+    public static String DEVICE_NAME_HONOR = "honor-CUN-AL00";
     public static String AUTOMATION_NAME_APPIUM = "Appium";
     public static String AUTOMATION_NAME_UIAUTOMATOR2 = "UiAutomator2";
     public static String PLATFORM_NAME_ANDROID = "Android";
@@ -30,6 +31,17 @@ public class YLLConstantValue {
     public static String id_back = "com.zjjyy.yilvyou:id/back";
     public static String id_back_click = "com.zjjyy.yilvyou:id/back_click";
 
+
+    /**
+     *   登录注册
+     */
+    public static String login_edit_phone = "com.zjjyy.yilvyou:id/edit_phone";
+    public static String login_edit_password = "com.zjjyy.yilvyou:id/edit_password";
+    public static String login_forget = "com.zjjyy.yilvyou:id/forget";
+    public static String login_btn_login = "com.zjjyy.yilvyou:id/btn_login";
+    public static String login_tv_create = "创建账号";
+    public static String login_btn_qq = "com.zjjyy.yilvyou:id/btn_qq";
+    public static String login_btn_weixin = "com.zjjyy.yilvyou:id/btn_weixin";
 
 
     /**

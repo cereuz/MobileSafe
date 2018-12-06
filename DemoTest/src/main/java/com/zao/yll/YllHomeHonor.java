@@ -4,34 +4,37 @@ import com.zao.utils.AppiumUtil;
 import com.zao.utils.ConstantValue;
 import com.zao.utils.Lo;
 import com.zao.utils.TestUtils;
+import com.zao.utils.ZaoUtils;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 
-public class YllHomeMeizu extends Thread{
+public class YllHomeHonor extends Thread{
 
-    public static String[] search_text = {"温州","wuxue","武汉","南京","wuxi","上海","杭州" };
-    public static String[] login_phone = {"13636127440"," ","136","136363636363636","13282380039","18395997650","17017001700" };
-    public static String[] login_password = {"123456"," ","654321"," ","123","17017001700" };
+    public static String[] search_text = {"温州","wuxue","武汉","南京","wuxi","上海","杭州"};
     /**
      * 启动APP ， 初始化 driver对象
      */
-    static AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_MEIZU,ConstantValue.UDID_MEIZU,YLLConstantValue.AUTOMATION_NAME_APPIUM,
-            YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION_711,
+    static AndroidDriver driver = TestUtils.initDevice(YLLConstantValue.DEVICE_NAME_HONOR,ConstantValue.UDID_HONOR,YLLConstantValue.AUTOMATION_NAME_UIAUTOMATOR2,
+            YLLConstantValue.PLATFORM_NAME_ANDROID, YLLConstantValue.PLATFORM_VERSION_51,
             YLLConstantValue.APP_PACKAGE_YLL, YLLConstantValue.APP_ACTIVITY_YLL,
-            YLLConstantValue.NO_RESET_FALSE,YLLConstantValue.URL_PORT_4723);
+            YLLConstantValue.NO_RESET_TRUE,YLLConstantValue.URL_PORT_4723);
 
     public static String getCurThread(){
         return Thread.currentThread().getName();
     }
 
-
-    @BeforeTest(groups = "test1")
+    @BeforeTest
+    @Parameters({ "test-name" })
     public static void before(){
         TestUtils.excuteAdbShell(ConstantValue.APPIUM_INPUT);
         Lo.debug("测试开始之前，主动切换成Appium输入法");
@@ -39,21 +42,22 @@ public class YllHomeMeizu extends Thread{
         /**
          * 刷新首页数据
          */
-        TestUtils.swipeToDown(driver,ConstantValue.SWIPE_DURING,1);
-        TestUtils.testSleep(ConstantValue.THREE_SECOND);
-
+        for (int i = 0; i < 2; i++) {
+            TestUtils.swipeToDown(driver, ConstantValue.SWIPE_DURING, 1);
+            TestUtils.testSleep(ConstantValue.THREE_SECOND);
+        }
     }
 
-    @AfterTest(groups = "test1")
+    @AfterTest
     public static void after(){
         /**
          * 切换成系统输入法
          */
-        AppiumUtil.typeWriting(ConstantValue.DEVICE);  //切换手机系统 自己的输入法
+        AppiumUtil.typeWriting(2);  //切换手机系统 自己的输入法
         Lo.debug("测试结束，主动切换成系统输入法");
     }
 
-    @Test(groups = "test1", priority = 1)
+    @Test
     public static void initSearch(){
         TestUtils.swipeToDown(driver, 3 * 1000, 1);
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
@@ -61,9 +65,7 @@ public class YllHomeMeizu extends Thread{
             AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_search));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_back_click));
         }
-        for (int m = 0; m < 1; m++) {
-            AppiumUtil.click(driver, By.id(YLLConstantValue.home_tv_search));
-        }
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_search));
         TestUtils.testSleep(ConstantValue.ONE_SECOND);
         /**
          * 在首页的输入框，输入内容，搜索，然后返回
@@ -85,13 +87,14 @@ public class YllHomeMeizu extends Thread{
     /**
      * 定位城市
      */
-    @Test(groups = "test2")
+    @Test
     public static void initLocation(){
         /**
          * 直接返回
          */
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_city));
         AppiumUtil.click(driver,By.id(YLLConstantValue.id_back));
+        AppiumUtil.click(driver,By.id(YLLConstantValue.location_confirm_button));
 
         /**
          * 测试点击已开通城市
@@ -99,9 +102,11 @@ public class YllHomeMeizu extends Thread{
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_city));
         int size = AppiumUtil.getTotal(driver,By.id(YLLConstantValue.location_dw_gridview_tv));
         AppiumUtil.click(driver,By.id(YLLConstantValue.location_dw_gridview_tv));
+        AppiumUtil.click(driver,By.id(YLLConstantValue.location_confirm_button));
         for(int i = 0; i < size; i++){
             AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_city));
             AppiumUtil.click(driver,By.id(YLLConstantValue.location_dw_gridview_tv),i);
+            AppiumUtil.click(driver,By.id(YLLConstantValue.location_confirm_button));
 
             String home_tv_city = AppiumUtil.getText(driver,By.id(YLLConstantValue.home_tv_city));
             String home_weather_tv_weather = AppiumUtil.getText(driver,By.id(YLLConstantValue.home_weather_tv_weather));
@@ -114,7 +119,7 @@ public class YllHomeMeizu extends Thread{
     /**
      * 轮播图
      */
-    @Test(groups = "test1", priority = 2)
+    @Test
     public static void initBanner(){
         int size = AppiumUtil.getTotal(driver,By.id(YLLConstantValue.home_banner_bannerViewPager));
         for(int i = 0; i < size ; i++) {
@@ -127,38 +132,29 @@ public class YllHomeMeizu extends Thread{
      *  未登录状态下
      *  0.右上角的消息按钮， 1.景点门票 ，2.酒店预订  3.领券中心
      */
-    @Test(priority = 1)
+    @Test
     public static void main(){
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_iv_msg));
         if(!AppiumUtil.clickB(driver,By.id(YLLConstantValue.id_index_local_rightImg))){
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_back));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_profile));
-            Lo.debug("当前登录的用户为：" + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_user_name))
-                            + "； 手机号："   + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_user_phone_num))
-                            + "； 余额："    + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_balence))
-                            + "； 用户返现："    + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_return_money))
-                            + "； 用户优惠券："    + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_discount_coupon)));
             AppiumUtil.click(driver,By.id(YLLConstantValue.profile_ib_setting));
             AppiumUtil.click(driver,By.id(YLLConstantValue.profile_LogOff));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_homepage));
-            TestUtils.swipeToDown(driver,ConstantValue.SWIPE_DURING,2);
         }
 
         for (int i=0; i < 2; i++) {
             AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_ticket));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_iv_back));
             AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_hotel));
-            AppiumUtil.click(driver,By.xpath(YLLConstantValue.xpath_meizu_hotel_back_1));
+            AppiumUtil.click(driver,By.xpath(YLLConstantValue.xpath_huawei_hotel_back_1));
             AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_voucher));
             AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_local_rightImg));
         }
 
 
-//        TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,1);
-        TestUtils.swipeToUp(driver, ConstantValue.SWIPE_DURING, 1, 3, 1);
-        if(AppiumUtil.clickB(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(2))) {
-            swipeItemPage(By.id(YLLConstantValue.id_index_iv_back));
-        }
+        TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,1);
+        AppiumUtil.click(driver,By.id(YLLConstantValue.home_tv_ticket_title),TestUtils.random(3));
+        swipeItemPage(By.id(YLLConstantValue.id_index_iv_back));
 
         TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,1);
         AppiumUtil.click(driver,By.id(YLLConstantValue.home_layout_collection));
@@ -200,7 +196,7 @@ public class YllHomeMeizu extends Thread{
     /**
      *  景点门票  列表界面的操作
      */
-    @Test(priority = 4)
+    @Test
     public static void initTicket(){
         /**
          * 搜索框
@@ -238,63 +234,20 @@ public class YllHomeMeizu extends Thread{
     /**
      *  酒店 搜索，列表界面的操作
      */
-    @Test(priority = 5)
-    public static void initHotel(){
+    @Test
+    public static void initZHotel(){
         AppiumUtil.click(driver, By.id(YLLConstantValue.home_title_cd_hotel));
+        TestUtils.testSleep(ConstantValue.SIX_SECOND);
 
-        AppiumUtil.sendKeys(driver,By.xpath(YLLConstantValue.xpath_meizu_hotel_key_words),search_text[TestUtils.random(search_text.length)]);
-        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_meizu_hotel_start_search));
+        TestUtils.excuteAdbShell(ConstantValue.HONOR_BACK);
+
+
+/*        AppiumUtil.sendKeys(driver,By.xpath(YLLConstantValue.xpath_huawei_hotel_key_words),search_text[TestUtils.random(search_text.length)]);
+        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_huawei_hotel_start_search));
 
         AppiumUtil.click(driver, By.id(YLLConstantValue.id_back));  //返回酒店搜索页面
-        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_meizu_hotel_back_1));  //返回首页
+        AppiumUtil.click(driver, By.xpath(YLLConstantValue.xpath_huawei_hotel_back_1));  //返回首页*/
     }
-
-    /**
-     *  登录注册
-     */
-    @Test(priority = 6)
-    public static void initLogin() {
-          AppiumUtil.click(driver, By.id(YLLConstantValue.id_index_local));
-          int phone_lenth = login_phone.length;
-          int password_lenth = login_password.length;
-        for(int i = 0; i < phone_lenth * 2; i ++) {
-            String phone = login_phone[TestUtils.random(phone_lenth)];
-            String password = login_password[TestUtils.random(password_lenth)];
-              AppiumUtil.sendKeys(driver, By.id(YLLConstantValue.login_edit_phone), phone);
-              AppiumUtil.sendKeys(driver, By.id(YLLConstantValue.login_edit_password), password);
-              AppiumUtil.click(driver, By.id(YLLConstantValue.login_btn_login));
-              Lo.info("【登录注册】手机号码 ：" + phone + " 密码 ：" + password);
-              TestUtils.testSleep(ConstantValue.TWO_SECOND);
-
-              initLogout();
-              AppiumUtil.click(driver, By.id(YLLConstantValue.id_index_local));
-          }
-
-        AppiumUtil.click(driver, By.id(YLLConstantValue.id_index_local_rightImg));
-        TestUtils.swipeToUp(driver,ConstantValue.SWIPE_DURING,2);
-    }
-
-    /**
-     * 退出登录
-     */
-    @Test(priority = 1)
-    public static void initLogout() {
-        AppiumUtil.click(driver,By.id(YLLConstantValue.home_iv_msg));
-        if(!AppiumUtil.clickB(driver,By.id(YLLConstantValue.id_index_local_rightImg))){
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_back));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_profile));
-            Lo.debug("当前登录的用户为：" + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_user_name))
-                    + "； 手机号："   + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_user_phone_num))
-                    + "； 余额："    + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_balence))
-                    + "； 用户返现："    + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_return_money))
-                    + "； 用户优惠券："    + AppiumUtil.getText(driver,By.id(YLLConstantValue.profile_tv_discount_coupon)));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.profile_ib_setting));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.profile_LogOff));
-            AppiumUtil.click(driver,By.id(YLLConstantValue.id_index_homepage));
-            TestUtils.swipeToDown(driver,ConstantValue.SWIPE_DURING,2);
-        }
-    }
-
 
     /**
          * 1.上下滑动列表
@@ -328,7 +281,7 @@ public class YllHomeMeizu extends Thread{
         AppiumUtil.click(driver,By.id(YLLConstantValue.search_search_content));
         AppiumUtil.sendKeys(driver,By.id(YLLConstantValue.search_search_content),message);
         Lo.info(message);
-        AppiumUtil.typeWriting(ConstantValue.DEVICE);  //切换手机系统 自己的输入法 . 1对应魅族
+        AppiumUtil.typeWriting(2);  //切换手机系统 自己的输入法 . 1对应魅族
         TestUtils.testSleep(ConstantValue.TWO_SECOND);
         //点击右下角的搜索，即ENTER键  ===输入拼音的时候，输入法会先确认内容，再进行搜索！！==
         for (int i = 0; i < 2; i++){
